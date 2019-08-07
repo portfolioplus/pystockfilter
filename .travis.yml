@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.6"
+cache: pip
+install:
+  - pip install tox-travis coveralls
+script:
+  - tox
+deploy:
+  provider: pypi
+  skip_cleanup: true
+  distributions: "bdist_wheel"
+  user:
+    secure: "dndHOzbxxOQ/9hBo5oRRxYEXhiQqdV4sKJOhWaugUm9N6GzULS0cPcTohQ2JjEsMnCkZBZlkwcKS3NB4sq+CB3wUi1RXIZKz0nH0J0fmTAFi4VFaxjsD2MffSXSWSWJmb6P5soG6G76RRlbSAwsqoRf/Me3qaHH3JJxMFGyHAe/TX49vGFBlDpzTApQ5O9v+7Y5jZlU/Rdb6X120WLW9Ah6PW8rLz7d7WjwBZTC7aCrd6c+w4M5pIVHc18zURXWBO4h6vat6DOhxxxLKSNPpLhmbbol1vsIT53Zj1XPKWkCarzHMbn6/4xxUpZewsE6us8Mryk2hopY8CPgAmARpxQQDTnxDe53OLrx1L+M7vsmlsuCmTofh6GsK3xF7IzDkCWi5/764Xyw/qKnZQ54sFwqYh8DSFl9ghiXw74tWDSnxFEgaQWMG7tzb5CRKx2k9eGnHiGgbzhjbHdBY5hg36xNA7tdaINpnLDPUUKL7PHJ4dclMMSOwvoPBzdEnPJa4FZsU6wnNbY7AC2p0OJg91HFAAXY4/3bsvGoDlFX00WXZdX3v1km+xDFzF87YEa876U+M0XshjZw9Fo5eP4s4H54lC0wR0pF42FDWNACg3LOA82Qk3XpZcao/4bmC+AZaK0/3h4iXTaE+Mb0sYKx9G6xTj01CIDUpF3LDrBoMaYY="
+  password:
+    secure: "C0KD/7KNq1mM7q8U+KaPf7zEzTVI9QOjBqVZ1+/uKHUOIRciQGo4vA1e9aAtC+MxXzEpxX4aUb4lHrxEx17Dqqcf4PNt5A9bz8mAf+8yO6Q3SjlxGcCAqS8JMTBWNXWaIHiGnQ3aPGA5rOq66d+mRZo5rRPl/Of+rKcauDK42vBR8XaE7W9N/5+Z9+v4WUjTuXR3LMoE1cx2QwHPr2lyMEhYkFlj1T9/s5O0rTWNKlzFih76AOsdnKsjM5cvrrulXujXaYLU89UakIuBd/Om5Qf2V4p5SN8gPaLzMfHoPQdWtJG6FE2uJOCDRv8tByyooF0ADD0PaO2tV5luS+wM4nMcPQI/ZUenMrFefHvk9bvNihyVeyIe7gFxPKqWJkVJeaWid6NT6IiZdRKsn0d+Wo0QLTuYq/qG9UoMQr9z8hqeESyPMLY5wzJugyYxZ2aP7HDdzV6BTy6W/5XhmL1yAUY+0xwi7ukwbXMB9Vs3IWWh4zHkuYYGzqhD7qosTEFOj4ZpcvHYR05EW8CDT7iwzwunZMMnNBRbXu5zQPhJdC2ndAh5Pgq8jVsvguUEgF8YyYF+Gtfm3bXVLl51Ia1XSlu6dpGoRd2wZgR0D6pFwnSzybwdV8zccsoW8vFggGioJgQrg0SmIUA8fckPwj5qFQ/9dAs2pIymqeI9Vv6EhE8="
+  on:
+    branch: master
+after_success:
+- coveralls --verbose

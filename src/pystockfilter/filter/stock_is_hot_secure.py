@@ -25,7 +25,7 @@ class StockIsHotSecure(StockIsHot):
     NAME = 'StockIsHotSecure'
 
     def __init__(self, arguments: dict, logger: logging.Logger):
-        self.secure_value = arguments["secure_value"]
+        self.secure_value = arguments['args']["secure_value"]
         super(StockIsHotSecure, self).__init__(arguments, logger)
 
     def analyse(self):

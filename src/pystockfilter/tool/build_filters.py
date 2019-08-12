@@ -81,16 +81,16 @@ class BuildFilters:
                 lambda p: p.symbol.name == symbol.name
                 and p.date >= my_filter.look_back_date()
                 and p.date <= datetime.datetime.now()
-                )
+            )
             my_filter.set_stock(stock)
             my_filter.set_bars(bars)
             strategy_status = my_filter.analyse()
             strategy_value = my_filter.get_calculation()
             tz = BaseHelper.get_timezone()
-            fil_typ = Type.get(name='filter') or Type(name='filter')
+            fil_typ = Type.get(name=Type.FIL)
 
             fil_tag = Tag.select(lambda t: t.name == my_filter.name and
-                                 t.type.name == 'filter') or \
+                                 t.type.name == Type.FIL) or \
                 Tag(name=my_filter.name, type=fil_typ)
 
             my_res = Result(
@@ -98,18 +98,17 @@ class BuildFilters:
                 status=strategy_status,
                 date=datetime.datetime.now(tz)
             )
-            # add arguments to result
-            arg_typ = Type.get(name='argument') or Type(name='argument')
 
+            # add arguments to result
+            arg_typ = Type.get(name=Type.ARG)
             for arg in my_filter.args:
                 arg_tag = Tag.select(lambda t: t.name == arg and
-                                     t.type.name == 'argument') or \
-                                     Tag(name=my_filter.name, type=arg_typ)
+                                     t.type.name == Type.ARG) or \
+                                     Tag(name=arg, type=arg_typ)
                 item = Item()
                 item.add_tags([arg_tag])
-                arg_str = json.dump(my_filter.args[arg])
-                arg_obj = Argument(item=item, arg=arg_str)
-                my_res.arguments.add(arg_obj)
+                arg_str = json.dumps(my_filter.args[arg])
+                Argument(item=item, arg=arg_str, result=my_res)
             # create signal item
             sig_item = Item()
             sig_item.add_tags([fil_tag])

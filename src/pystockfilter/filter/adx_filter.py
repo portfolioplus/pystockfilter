@@ -29,7 +29,7 @@ class AdxFilter(BaseFilter):
         self.buy = arguments['args']['threshold_buy']
         self.sell = arguments['args']['threshold_sell']
         self.lookback = arguments['args']['lookback']
-        self.parameter = arguments['parameter']
+        self.parameter = arguments['args']['parameter']
         super(AdxFilter, self).__init__(arguments, logger)
 
     def analyse(self):

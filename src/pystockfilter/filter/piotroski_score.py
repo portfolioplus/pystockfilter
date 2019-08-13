@@ -22,7 +22,6 @@ class PiotroskiScore(BaseFilter):
         self.buy = arguments['args']['threshold_buy']
         self.sell = arguments['args']['threshold_sell']
         self.lookback = None
-        self.intervals = arguments['args']['intervals']
         super(PiotroskiScore, self).__init__(arguments, logger)
 
     def __calculate_net_income(self):
@@ -41,15 +40,15 @@ class PiotroskiScore(BaseFilter):
         return self.stock.get_data_attr("cash", "cashFromOper")
 
     def __calculate_debtassetratio(self):
-        long_term_debt = self.stock.get_data_attr("balance", "longTermDebt")
+        ltd = self.stock.get_data_attr("balance", "longTermDebt")
         total_assets = self.stock.get_data_attr("balance", "totalAssets")
-        long_term_debt_prev = self.stock.get_data_attr("balance",
-                                                       "longTermDebt",
-                                                       quarter_diff=4)
+        ltd_prev = self.stock.get_data_attr("balance",
+                                            "longTermDebt",
+                                            quarter_diff=4)
         total_assets_prev = self.stock.get_data_attr("balance", "totalAssets",
                                                                 quarter_diff=4)
-        return (long_term_debt / total_assets,
-                long_term_debt_prev / total_assets_prev)
+        return (ltd / total_assets,
+                ltd_prev / total_assets_prev)
 
     def __calculate_current_ratio(self):
         assets = self.stock.get_data_attr("balance", "totalCurrentAssets")

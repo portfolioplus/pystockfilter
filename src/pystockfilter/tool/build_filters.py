@@ -10,9 +10,9 @@ import datetime
 import json
 import logging
 
-from pony.orm import commit, db_session
+from pony.orm import commit, db_session, select
 from pystockdb.db.schema.stocks import (Argument, Item, Price, Result, Signal,
-                                        Stock, Symbol, Tag, Type)
+                                        Stock, Symbol, Index, Tag, Type)
 
 from pystockfilter.base.base_helper import BaseHelper
 from pystockfilter.filter.base_filter import BaseFilter
@@ -49,6 +49,15 @@ class BuildFilters:
         if self.symbols is None or self.filters is None:
             return 1
         rc = 0
+        # select all symbols with price connection
+        if 'ALL' in self.symbols:
+            # without index symbols
+            symbols = list(
+                select(p.symbol.name for p in Price
+                       if Tag.IDX not in p.symbol.item.tags.name)
+            )
+            self.symbols = symbols
+
         for symbol_str in self.symbols:
             self.logger.info('Create filter for {}.'.format(symbol_str))
             # get stock of symbol
@@ -76,14 +85,30 @@ class BuildFilters:
 
     def __build(self, my_filter, stock, symbol):
         if my_filter.look_back_date():
-
-            bars = Price.select(
-                lambda p: p.symbol.name == symbol.name
-                and p.date >= my_filter.look_back_date()
-                and p.date <= datetime.datetime.now()
-            )
             my_filter.set_stock(stock)
-            my_filter.set_bars(bars)
+            # set bar prices
+            if my_filter.need_bars:
+                bars = Price.select(
+                    lambda p: p.symbol.name == symbol.name
+                    and p.date >= my_filter.look_back_date()
+                    and p.date <= datetime.datetime.now()
+                )
+                my_filter.set_bars(bars)
+            # set index
+            if my_filter.need_index_bars:
+                # get index symbol of stock
+                index_sym = select(
+                    i.price_item.symbols.name for i in Index
+                    if i in stock.indexs
+                ).first()
+
+                bars = Price.select(
+                    lambda p: p.symbol.name == index_sym
+                    and p.date >= my_filter.look_back_date()
+                    and p.date <= datetime.datetime.now()
+                )
+                my_filter.set_index_bars(bars)
+
             strategy_status = my_filter.analyse()
             strategy_value = my_filter.get_calculation()
             tz = BaseHelper.get_timezone()

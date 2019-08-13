@@ -8,6 +8,7 @@
 """
 import logging
 
+from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from pystockfilter.filter.base_filter import BaseFilter
@@ -24,7 +25,6 @@ class PriceTargetScore(BaseFilter):
         self.buy = arguments['args']['threshold_buy']
         self.sell = arguments['args']['threshold_sell']
         self.lookback = arguments['args']['lookback']
-        self.intervals = arguments['args']['intervals']
         super(PriceTargetScore, self).__init__(arguments, logger)
 
     def analyse(self):
@@ -49,7 +49,8 @@ class PriceTargetScore(BaseFilter):
             elif diff_high > 0:
                 price_target_score = int(diff_high / high_steps)
             elif diff_mean < 0:
-                price_target_score = -1 * abs(int(diff_mean*2 / (low_steps+high_steps)))
+                price_target_score = -1 * \
+                    abs(int(diff_mean*2 / (low_steps+high_steps)))
             else:
                 price_target_score = int(diff_mean*2 / (low_steps+high_steps))
             self.calc = price_target_score

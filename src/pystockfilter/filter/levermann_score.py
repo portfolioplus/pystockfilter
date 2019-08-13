@@ -7,6 +7,7 @@
   can be found in the LICENSE file.
 """
 import logging
+from datetime import datetime
 
 import numpy as np
 from dateutil.relativedelta import relativedelta
@@ -27,21 +28,6 @@ class LevermannScore(BaseFilter):
         self.buy = arguments['args']['threshold_buy']
         self.sell = arguments['args']['threshold_sell']
         self.lookback = arguments['args']['lookback']
-        self.intervals = arguments['args']['intervals']
-        self.index_bars = None
-        if self.bars is not None:
-            self.index_bars = self.stock.indices[0].get_bars(
-                start=self.bars[:, 5][0],
-                end=self.bars[:, 5][-1],
-                output_type=BARS_NUMPY
-            ) if self.stock is not None else None
-
-    def set_stock(self, stock):
-        self.stock = stock
-        self.index_bars = self.stock.indices[0].get_bars(
-            start=self.bars[:, 5][0],
-            end=self.bars[:, 5][-1],
-            output_type=BARS_NUMPY) if stock is not None else None
 
     @staticmethod
     def calculate_trendsrating(datas):
@@ -62,7 +48,8 @@ class LevermannScore(BaseFilter):
 
     def __calculate_shareholders_equity(self):
         total_assets = self.stock.get_data_attr("balance", "totalAssets")
-        current_liabilities = self.stock.get_data_attr("balance", "totalCurrentLiabili")
+        current_liabilities = self.stock.get_data_attr("balance",
+                                                       "totalCurrentLiabili")
         shareholders_equity = total_assets - current_liabilities
         return shareholders_equity
 
@@ -75,26 +62,29 @@ class LevermannScore(BaseFilter):
         return roe
 
     def __calculate_ebit_margin(self):
-        net_income_before_taxes = self.stock.get_data_attr("income", "netBeforeTaxes")
-        accumulated_depreciation = self.stock.get_data_attr("balance", "accumulatedDepreciation")
+        net_income_before_taxes = self.stock.get_data_attr("income",
+                                                           "netBeforeTaxes")
+        ac_dep = self.stock.get_data_attr("balance", "accumulatedDepreciation")
         total_revenue = self.stock.get_data_attr("income", "totalRevenue")
         ebit_margin = 0
         if total_revenue > 0:
-            ebit_margin = (net_income_before_taxes - accumulated_depreciation) / total_revenue
+            ebit_margin = (net_income_before_taxes - ac_dep) / total_revenue
         return ebit_margin
 
     def __calculate_shareholders_equity_ratio(self):
         total_assets = self.stock.get_data_attr("balance", "totalAssets")
-        shareholders_equity_ratio = 0
+        ser = 0
         if total_assets > 0:
-            shareholders_equity_ratio = self.__calculate_shareholders_equity() / total_assets
-        return shareholders_equity_ratio
+            ser = self.__calculate_shareholders_equity() / total_assets
+        return ser
 
     def __calculate_eps_avg(self, years=5):
         eps_counter = 0
         eps_n = 0
         for idx in range(0, years):
-            eps_annual = self.stock.get_data_attr("income", "dilutedEpsExtraOrd", annual=True,
+            eps_annual = self.stock.get_data_attr("income",
+                                                  "dilutedEpsExtraOrd",
+                                                  annual=True,
                                                   quarter_diff=idx * 4)
             if eps_annual != -1:
                 eps_n += eps_annual
@@ -117,37 +107,40 @@ class LevermannScore(BaseFilter):
 
     def __calculate_impact_of_quartly_figures(self):
         # index values
-        last_quarterly = self.stock.get_data("income")
-        if last_quarterly:
-            last_quarterly = last_quarterly[0]['reportDate']
+        last_quart = self.stock.get_data("income")
+        if last_quart:
+            last_quart = last_quart[0]['reportDate']
         else:
             return -1
         # get index by report date
-        last_quarterly = last_quarterly.split('T00')[0]
-        # report date provided by webull looks not accurate
-        last_quarterly = datetime.strptime(last_quarterly, '%Y-%m-%d')
-        idx_index_last_quarterly = np.where(self.index_bars[:, 5] <
-                                            np.datetime64(last_quarterly))[0][-1]
-        idx_stock_last_quarterly = np.where(self.bars[:, 5] < np.datetime64(last_quarterly))[0][-1]
-        vals_stock_last_quarterly = self.bars[[idx_stock_last_quarterly,
-                                               idx_stock_last_quarterly - 1]]
-        vals_index_last_quarterly = self.index_bars[[idx_index_last_quarterly,
-                                                     idx_index_last_quarterly - 1]]
-        perf_quarterly_index_prc = 100 * (vals_index_last_quarterly[1][0] -
-                                          vals_index_last_quarterly[0][0]) /\
-            vals_index_last_quarterly[1][0]
-        perf_quarterly_stock_prc = 100 * (vals_stock_last_quarterly[1][0] -
-                                          vals_stock_last_quarterly[0][0]) / \
-            vals_stock_last_quarterly[1][0]
-        perf_quarterly = perf_quarterly_stock_prc - perf_quarterly_index_prc
-        return perf_quarterly
+        last_quart = last_quart.split('T00')[0]
+        # report date provided by fundamentals looks not accurate
+        last_quart = datetime.strptime(last_quart, '%Y-%m-%d')
+        idx_index_last_quart = np.where(self.index_bars[:, 5] <
+                                        np.datetime64(last_quart))[0][-1]
+        idx_stock_last_quart = np.where(self.bars[:, 5] <
+                                        np.datetime64(last_quart))[0][-1]
+        vals_stock_last_quart = self.bars[[idx_stock_last_quart,
+                                           idx_stock_last_quart - 1]]
+        vals_index_last_quart = self.index_bars[[idx_index_last_quart,
+                                                 idx_index_last_quart - 1]]
+        perf_quart_index_prc = 100 * (vals_index_last_quart[1][0] -
+                                      vals_index_last_quart[0][0]) /\
+            vals_index_last_quart[1][0]
+        perf_quart_stock_prc = 100 * (vals_stock_last_quart[1][0] -
+                                      vals_stock_last_quart[0][0]) / \
+            vals_stock_last_quart[1][0]
+        perf_quart = perf_quart_stock_prc - perf_quart_index_prc
+        return perf_quart
 
     def __calculate_rating_differences_in_percent(self):
         rating = self.calculate_trendsrating(
-            self.stock.get_data("recommendation")['trends'][0]['distributionList']
+            self.stock.get_data("recommendation")
+            ['trends'][0]['distributionList']
         )
         rating_4w = self.calculate_trendsrating(
-            self.stock.get_data("recommendation")['trends'][2]['distributionList'])
+            self.stock.get_data("recommendation")
+            ['trends'][2]['distributionList'])
         rating_dif_prc = 100 * (rating_4w - rating) / rating
         return rating_dif_prc
 
@@ -165,8 +158,8 @@ class LevermannScore(BaseFilter):
         stock_perf = Sih.get_performance(close_prices, 30)[::-1]
         index_perf = Sih.get_performance(self.index_bars[:, 0], 30)[::-1]
         perf_measure = 0
-        if not hasattr(stock_perf, 'size') or not hasattr(index_perf, 'size') or \
-                stock_perf.size == 0 or index_perf.size == 0:
+        if not hasattr(stock_perf, 'size') or not hasattr(index_perf, 'size') \
+           or stock_perf.size == 0 or index_perf.size == 0:
             return perf_measure
 
         for idx, perf in enumerate(np.nditer(index_perf)):
@@ -180,7 +173,9 @@ class LevermannScore(BaseFilter):
         eps_estimate = self.stock.get_data_attr("recommendation", "eps")
         eps_last = 0
         for idx in range(0, 5):
-            eps_annual = self.stock.get_data_attr("income", "dilutedEpsExtraOrd", annual=True,
+            eps_annual = self.stock.get_data_attr("income",
+                                                  "dilutedEpsExtraOrd",
+                                                  annual=True,
                                                   quarter_diff=idx * 4)
             if eps_annual != -1:
                 eps_last = eps_annual
@@ -194,25 +189,32 @@ class LevermannScore(BaseFilter):
         levermann = 0
         roe = self.__calculate_roe()
         ebit_margin = self.__calculate_ebit_margin()
-        shareholders_equity_ratio = self.__calculate_shareholders_equity_ratio()
+        ser = self.__calculate_shareholders_equity_ratio()
         # 1. RoE
         if roe > 0.2:
+            self.args['lev_roe'] = 1
             levermann += 1
         elif roe < 0.1:
+            self.args['lev_roe'] = -1
             levermann -= 1
         # 2. Ebit
         if ebit_margin > 0.12:
+            self.args['lev_ebit_margin'] = 1
             levermann += 1
         elif ebit_margin < 0.06:
+            self.args['lev_ebit_margin'] = -1
             levermann -= 1
         # 3. equity ratio
-        if shareholders_equity_ratio > 0.25:
+        if ser > 0.25:
+            self.args['lev_sharehold_equity_ratio'] = 1
             levermann += 1
-        elif shareholders_equity_ratio < 0.15:
+        elif ser < 0.15:
+            self.args['lev_sharehold_equity_ratio'] = -1
             levermann -= 1
         return levermann
 
     def __calculate_rating(self):
+        self.args['lev_eps_5_years'] = -1
         levermann = 0
         price_earnings_ratios = self.__calculate_price_earnings_ratios()
         if price_earnings_ratios is None:
@@ -223,25 +225,32 @@ class LevermannScore(BaseFilter):
                 levermann += 1
             elif ratio > 12 or ratio < 0:
                 levermann -= 1
+        self.args['lev_eps_5_years'] = levermann
         # todo add 5. eps
         return levermann
 
     def __calculate_mood(self):
         levermann = 0
         rating = self.calculate_trendsrating(
-            self.stock.get_data("recommendation")['trends'][0]['distributionList']
+            self.stock.get_data("recommendation")
+            ['trends'][0]['distributionList']
         )
         impact_quartly = self.__calculate_impact_of_quartly_figures()
         # 6. Analysis  >= 2.5 +1 <=1.5 -1
         if rating >= 2.5:
+            self.args['lev_mood'] = 1
             levermann += 1
         elif rating <= 1.5:
+            self.args['lev_mood'] = -1
             levermann -= 1
 
-        # 7. impact of quarterly figures > 1 % +1 < -1 % = Kursreaktion - DAX Reaktion
+        # 7. impact of quart figures > 1 % +1 < -1 %
+        # = stock price reaction - index quotation reaction
         if impact_quartly > 1.0:
+            self.args['lev_impact_quart'] = 1
             levermann += 1
         elif impact_quartly < -1.0:
+            self.args['lev_impact_quart'] = -1
             levermann -= 1
         return levermann
 
@@ -249,23 +258,32 @@ class LevermannScore(BaseFilter):
         levermann = 0
         rating_dif_prc = self.__calculate_rating_differences_in_percent()
         performance_list_stock = self.__calculate_performance()
-        # 8. EPS -  not possible with our data therefore we take the overall rating
+        # 8. EPS -  not possible with our data therefore
+        # we take the overall rating
         if rating_dif_prc > 10.0:
+            self.args['lev_rating_dif_prc'] = 1
             levermann += 1
         elif rating_dif_prc < 10.0:
+            self.args['lev_rating_dif_prc'] = -1
             levermann -= 1
         # 9. performance 6 months and 10. 12 months
         for per_it in performance_list_stock:
             if per_it > 0.05:
+                self.args['lev_stock_performance'] = 1
                 levermann += 1
             elif per_it < -0.05:
+                self.args['lev_stock_performance'] = -1
                 levermann -= 1
         # 11. raising momentum
         if performance_list_stock[0] > 0.05 and \
-                (0.05 > performance_list_stock[1] > -0.05 or performance_list_stock[1] < -0.05):
+                (0.05 > performance_list_stock[1] > -0.05 or
+                 performance_list_stock[1] < -0.05):
+            self.args['lev_raising_momentum'] = 1
             levermann += 1
         elif performance_list_stock[0] < -0.05 and \
-                (0.05 > performance_list_stock[1] > -0.05 or performance_list_stock[1] > 0.05):
+                (0.05 > performance_list_stock[1] > -0.05 or
+                 performance_list_stock[1] > 0.05):
+            self.args['lev_raising_momentum'] = -1
             levermann -= 1
         return levermann
 
@@ -275,8 +293,10 @@ class LevermannScore(BaseFilter):
         # 12. 3 month interval compare with index
         if perf_measure == 3:
             levermann += 1
+            self.args['lev_cmp_index'] = 1
         elif perf_measure == -3:
             levermann -= 1
+            self.args['lev_cmp_index'] = -1
         return levermann
 
     def __calculate_growing(self):
@@ -284,8 +304,10 @@ class LevermannScore(BaseFilter):
         eps_last_diff_prc = self.__calculate_eps_difference()
         # 13. compare guessed eps of this year withe next year
         if eps_last_diff_prc > 5.0:
+            self.args['lev_eps_diff'] = 1
             levermann += 1
         elif eps_last_diff_prc < -5.0:
+            self.args['lev_eps_diff'] = -1
             levermann -= 1
         return levermann
 

@@ -21,6 +21,8 @@ class BaseFilter:
 
     def __init__(self, arguments, logger: logging.Logger):
         self.logger = logger
+        self.need_bars = arguments['bars']
+        self.need_index_bars = arguments['index_bars']
         self.args = arguments['args']
         self.name = arguments['name']
         self.calc = 0
@@ -59,6 +61,20 @@ class BaseFilter:
                                 i.high,
                                 i.low,
                                 i.date] for i in bars])
+
+    def set_index_bars(self, bars):
+        """
+        Setter method for index bar
+        :param bars:
+        :return: nothing
+        """
+        # convert to numpy
+        self.index_bars = np.asarray([[i.close,
+                                       i.open,
+                                       i.volume,
+                                       i.high,
+                                       i.low,
+                                       i.date] for i in bars])
 
     def set_stock(self, stock):
         """

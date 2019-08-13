@@ -24,6 +24,8 @@ class BuildInternalFilters:
     """
     arguments_rsip14 = {
         'name': 'RsiP14',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 70.0,
             'threshold_sell': 70.0,
@@ -34,6 +36,8 @@ class BuildInternalFilters:
 
     arguments_rsip5 = {
         'name': 'RsiP5',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 70.0,
             'threshold_sell': 70.0,
@@ -44,6 +48,8 @@ class BuildInternalFilters:
 
     arguments_adxp14 = {
         'name': 'AdxP14',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 30.0,
             'threshold_sell': 30.0,
@@ -54,6 +60,8 @@ class BuildInternalFilters:
 
     arguments_adxp5 = {
         'name': 'AdxP5',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 30.0,
             'threshold_sell': 30.0,
@@ -64,6 +72,8 @@ class BuildInternalFilters:
 
     arguments_hot2 = {
         'name': 'StockIsHot2Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -74,6 +84,8 @@ class BuildInternalFilters:
 
     arguments_hot3 = {
         'name': 'StockIsHot3Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -84,6 +96,8 @@ class BuildInternalFilters:
 
     arguments_hot6 = {
         'name': 'StockIsHot6Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -94,6 +108,8 @@ class BuildInternalFilters:
 
     arguments_sec2 = {
         'name': 'SecureHot2Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -105,6 +121,8 @@ class BuildInternalFilters:
 
     arguments_sec3 = {
         'name': 'SecureHot3Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -116,6 +134,8 @@ class BuildInternalFilters:
 
     arguments_sec6 = {
         'name': 'SecureHot6Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -127,6 +147,8 @@ class BuildInternalFilters:
 
     arguments_sech2 = {
         'name': 'SecureHotH2Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -138,6 +160,8 @@ class BuildInternalFilters:
 
     arguments_sech3 = {
         'name': 'SecureHotH3Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -149,6 +173,8 @@ class BuildInternalFilters:
 
     arguments_sech6 = {
         'name': 'SecureHotH6Month',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 0.8,
             'threshold_sell': 0.5,
@@ -160,6 +186,8 @@ class BuildInternalFilters:
 
     arguments_pio = {
         'name': 'PiotroskiScore',
+        'bars': False,
+        'index_bars': False,
         'args': {
             'threshold_buy': 8,
             'threshold_sell': 5,
@@ -170,6 +198,8 @@ class BuildInternalFilters:
 
     arguments_lev = {
         'name': 'LevermannScore',
+        'bars': True,
+        'index_bars': True,
         'args': {
             'threshold_buy': 7,
             'threshold_sell': 2,
@@ -180,6 +210,8 @@ class BuildInternalFilters:
 
     arguments_pri = {
         'name': 'PriceTargetScore',
+        'bars': True,
+        'index_bars': False,
         'args': {
             'threshold_buy': 8,
             'threshold_sell': -2,

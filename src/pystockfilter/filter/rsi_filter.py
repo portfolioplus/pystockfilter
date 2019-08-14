@@ -7,6 +7,7 @@
   can be found in the LICENSE file.
 """
 import logging
+from datetime import datetime
 
 import numpy as np
 import tulipy as ti
@@ -27,7 +28,7 @@ class RsiFilter(BaseFilter):
         self.buy = arguments['args']['threshold_buy']
         self.sell = arguments['args']['threshold_sell']
         self.lookback = arguments['args']['lookback']
-        self.parameter = arguments['parameter']
+        self.parameter = arguments['args']['parameter']
         super(RsiFilter, self).__init__(arguments, logger)
 
     def analyse(self):
@@ -45,7 +46,6 @@ class RsiFilter(BaseFilter):
             return BaseFilter.BUY
         elif self.calc <= self.sell:
             return BaseFilter.SELL
-
         return BaseFilter.HOLD
 
     def get_calculation(self):

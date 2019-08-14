@@ -7,9 +7,11 @@
   can be found in the LICENSE file.
 """
 import logging
-from datetime import date, datetime
+from datetime import datetime
+
 import numpy as np
 from dateutil.relativedelta import relativedelta
+
 from pystockfilter.filter.base_filter import BaseFilter
 
 
@@ -65,12 +67,13 @@ class StockIsHot(BaseFilter):
     @staticmethod
     def get_performance(array, interval: int):
         """
-        Splits values by interval and calculates for each split the performance value
+        Splits values by interval and calculates for each split the
+        performance value
         :param array: close prices of stock
         :param interval: interval in days
         :return: list with performance values
         """
-        array = array[array != np.array(None)]
+        array = array[array != np.array(None)].astype(np.float64)
         steps = int(array.shape[0]/interval)
         delta_list = np.zeros(steps)
         for idx in range(1, steps+1):

@@ -12,26 +12,32 @@
 from setuptools import setup, find_packages
 
 EXCLUDE_FROM_PACKAGES = ['test', 'test.*', 'test*']
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
-with open("README.md", "r") as fh:
+with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 INSTALL_REQUIRES = (
     [
+        'pystockdb==1.0.6',
+        'cython==0.29.13',
+        'python-dateutil==2.8.0',
+        'numpy==1.17.0',
+        'tulipy==0.4.0'
     ]
 )
 
 setup(
-    name="pystockfilter",
+    name='pystockfilter',
     version=VERSION,
-    author="Slash Gordon",
-    author_email="slash.gordon.dev@gmail.com",
+    author='Slash Gordon',
+    author_email='slash.gordon.dev@gmail.com',
     package_dir={'': 'src'},
-    description="Simple stock db with tools.",
+    description='Financial technical and fundamental analysis indicator'
+                ' library for pystockdb.',
     long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/portfolioplus/pystockdb",
+    long_description_content_type='text/markdown',
+    url='https://github.com/portfolioplus/pystockfilter',
     install_requires=INSTALL_REQUIRES,
     packages=find_packages('src', exclude=EXCLUDE_FROM_PACKAGES),
     classifiers=[

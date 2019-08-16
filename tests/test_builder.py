@@ -15,8 +15,9 @@ from shutil import copyfile
 
 from dateutil.relativedelta import relativedelta
 from pony.orm import db_session
-from pystockdb.db.schema.stocks import Index, Price, Stock, Tag, db
+from pystockdb.db.schema.stocks import Index, Price, Signal, Stock, Tag, db
 
+from pystockfilter.base.base_helper import BaseHelper
 from pystockfilter.filter.adx_filter import AdxFilter
 from pystockfilter.filter.levermann_score import LevermannScore
 from pystockfilter.filter.piotroski_score import PiotroskiScore
@@ -47,12 +48,21 @@ class TesFilterBuilder(unittest.TestCase):
         db.bind(**arguments["db_args"])
         db.generate_mapping()
 
+    @db_session
     def test_internal_create(self):
-        logger = logging.getLogger('test')
-        cfg = {'symbols': ['ADS.F']}
-        # todo freeze time
+        logger = BaseHelper.setup_logger('test')
+        cfg = {
+          'symbols': ['ADS.F'],
+          # fix date in this way because pony orm can not handel fakedatetime
+          'now_date': datetime.strptime('2019-08-07', '%Y-%m-%d')
+        }
         builder = BuildInternalFilters(cfg, logger)
         self.assertEqual(builder.build(), 0)
+        signal = Signal.select(
+          lambda s: 'PiotroskiScore' in s.item.tags.name
+        ).first()
+        self.assertTrue(signal is not None)
+        self.assertEqual(signal.result.value, 5.0)
         # test build filters with all symbols
         cfg = {'symbols': ['ALL']}
         builder = BuildInternalFilters(cfg, logger)

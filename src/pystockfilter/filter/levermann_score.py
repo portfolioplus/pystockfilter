@@ -50,8 +50,10 @@ class LevermannScore(BaseFilter):
         total_assets = self.stock.get_data_attr("balance", "totalAssets")
         current_liabilities = self.stock.get_data_attr("balance",
                                                        "totalCurrentLiabili")
-        shareholders_equity = total_assets - current_liabilities
-        return shareholders_equity
+        if total_assets and current_liabilities:
+            shareholders_equity = total_assets - current_liabilities
+            return shareholders_equity
+        return 0
 
     def __calculate_roe(self):
         net_income = self.stock.get_data_attr("income", "netIncome")
@@ -235,7 +237,7 @@ class LevermannScore(BaseFilter):
             self.stock.get_data("recommendation")
             ['trends'][0]['distributionList']
         )
-        impact_quartly = self.__calculate_impact_of_quartly_figures()
+
         # 6. Analysis  >= 2.5 +1 <=1.5 -1
         if rating >= 2.5:
             self.args['lev_mood'] = 1
@@ -243,7 +245,13 @@ class LevermannScore(BaseFilter):
         elif rating <= 1.5:
             self.args['lev_mood'] = -1
             levermann -= 1
-
+        try:
+            impact_quartly = self.__calculate_impact_of_quartly_figures()
+        except IndexError:
+            self.logger.warning(
+                'Can not calculate impact_quartly because of missing values.'
+            )
+            impact_quartly = -1
         # 7. impact of quart figures > 1 % +1 < -1 %
         # = stock price reaction - index quotation reaction
         if impact_quartly > 1.0:

@@ -214,4 +214,4 @@ class PiotroskiScore(BaseFilter):
         return self.calc
 
     def look_back_date(self):
-        return None
+        return True

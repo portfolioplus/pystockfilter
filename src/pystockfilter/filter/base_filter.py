@@ -32,7 +32,11 @@ class BaseFilter:
         Starts analysis process
         :return:
         """
-        raise NotImplementedError
+        if self.calc >= self.buy:
+            return BaseFilter.BUY
+        elif self.calc <= self.sell:
+            return BaseFilter.SELL
+        return BaseFilter.HOLD
 
     def get_calculation(self):
         """

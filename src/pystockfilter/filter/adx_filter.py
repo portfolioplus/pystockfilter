@@ -45,12 +45,7 @@ class AdxFilter(BaseFilter):
             self.calc = float(median)
         else:
             self.logger.warning("Data causes nan. {}".format(close))
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
-
-        return BaseFilter.HOLD
+        return super(AdxFilter, self).analyse()
 
     def get_calculation(self):
         return self.calc

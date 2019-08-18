@@ -41,10 +41,7 @@ class LevermannScore(BaseFilter):
         for data in datas:
             nominator += data['Recommendation']*data['NumberOfAnalysts']
             denominator += data['NumberOfAnalysts']
-        try:
-            return nominator / denominator
-        except ZeroDivisionError:
-            return 0
+        return nominator / denominator
 
     def __calculate_shareholders_equity(self):
         total_assets = self.stock.get_data_attr("balance", "totalAssets")
@@ -181,11 +178,8 @@ class LevermannScore(BaseFilter):
                                                   quarter_diff=idx * 4)
             if eps_annual != -1:
                 eps_last = eps_annual
-        try:
-            eps_last_diff_prc = 100 * (eps_estimate - eps_last) / eps_estimate
-            return eps_last_diff_prc
-        except ZeroDivisionError:
-            return 0
+        eps_last_diff_prc = 100 * (eps_estimate - eps_last) / eps_estimate
+        return eps_last_diff_prc
 
     def __calculate_quality(self):
         levermann = 0
@@ -245,13 +239,8 @@ class LevermannScore(BaseFilter):
         elif rating <= 1.5:
             self.args['lev_mood'] = -1
             levermann -= 1
-        try:
-            impact_quartly = self.__calculate_impact_of_quartly_figures()
-        except IndexError:
-            self.logger.warning(
-                'Can not calculate impact_quartly because of missing values.'
-            )
-            impact_quartly = -1
+
+        impact_quartly = self.__calculate_impact_of_quartly_figures()
         # 7. impact of quart figures > 1 % +1 < -1 %
         # = stock price reaction - index quotation reaction
         if impact_quartly > 1.0:
@@ -320,22 +309,13 @@ class LevermannScore(BaseFilter):
         return levermann
 
     def analyse(self):
-        try:
-            levermann = self.__calculate_quality() \
-                        + self.__calculate_rating() \
-                        + self.__calculate_mood() \
-                        + self.__calculate_momentum() \
-                        + self.__calculate_technique() \
-                        + self.__calculate_growing()
-            self.calc = levermann
-        except (KeyError, IndexError):
-            self.logger.exception("Error during calculation.")
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
-
-        return BaseFilter.HOLD
+        self.calc = self.__calculate_quality() \
+                    + self.__calculate_rating() \
+                    + self.__calculate_mood() \
+                    + self.__calculate_momentum() \
+                    + self.__calculate_technique() \
+                    + self.__calculate_growing()
+        return super(LevermannScore, self).analyse()
 
     def get_calculation(self):
         return self.calc

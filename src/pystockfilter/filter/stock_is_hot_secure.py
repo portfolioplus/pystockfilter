@@ -34,17 +34,14 @@ class StockIsHotSecure(StockIsHot):
         if first_value == 0:
             return BaseFilter.HOLD
         secure_value = last_value/first_value
-        # The stock shows strong losses over a longer period of time. So we decrease the score.
+        # The stock shows strong losses over a longer period of time.
+        # So we decrease the score.
         self.bars = self.bars[:][int(len(self.bars) / 2):]
         status = super(StockIsHotSecure, self).analyse()
         if secure_value > self.secure_value:
             return status
         self.calc = self.calc/2
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
-        return BaseFilter.HOLD
+        return BaseFilter.analyse(self)
 
     def look_back_date(self):
         return datetime.today() + relativedelta(months=-self.lookback*2)

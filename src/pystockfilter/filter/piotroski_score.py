@@ -197,18 +197,11 @@ class PiotroskiScore(BaseFilter):
         return piotroski
 
     def analyse(self):
-        try:
-            self.calc = self.__calculate_profitability() + \
-                        self.__calculate_liquidity() + \
-                        self.__calculate_operating_efficiency()
-        except (KeyError, ZeroDivisionError, TypeError):
-            self.logger.exception("Error during calculation.")
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
+        self.calc = self.__calculate_profitability() + \
+                    self.__calculate_liquidity() + \
+                    self.__calculate_operating_efficiency()
 
-        return BaseFilter.HOLD
+        return super(PiotroskiScore, self).analyse()
 
     def get_calculation(self):
         return self.calc

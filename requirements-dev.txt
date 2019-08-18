@@ -1,4 +1,4 @@
-wheel==0.33.4
+wheel==0.33.5
 pytest
 pytest-cov
 flake8==3.7.8

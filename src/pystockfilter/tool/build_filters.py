@@ -72,15 +72,11 @@ class BuildFilters:
                         'Execute filter {}.'.format(my_filter.name)
                     )
                     self.__build(my_filter, stock, symbol)
-                except TypeError:
+                except (TypeError, RuntimeError, KeyError, ZeroDivisionError, IndexError):
                     self.logger.exception(
                         'Filter {} causes exceptions.'.format(my_filter.name)
                         )
                     rc += 1
-                except RuntimeError:
-                    self.logger.exception(
-                        'Filter {} causes exceptions.'.format(my_filter.name)
-                        )
         commit()
         return rc
 

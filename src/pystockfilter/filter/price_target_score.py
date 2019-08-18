@@ -29,39 +29,32 @@ class PriceTargetScore(BaseFilter):
 
     def analyse(self):
         price_target_score = 0
-        try:
-            prices = self.stock.get_data("recommendation")['priceTarget']
-            low = float(prices['low'])
-            high = float(prices['high'])
-            mean = float(prices['mean'])
-            current = self.bars[:, 0][-1]
-            diff_low = current - low
-            diff_high = current - high
-            diff_mean = current - mean
-            low_steps = (mean - low) / 10.0
-            if low_steps == 0:
-                low_steps = 1
-            high_steps = (high - mean) / 10.0
-            if high_steps == 0:
-                high_steps = 1
-            if diff_low < 0:
-                price_target_score = -1 * abs(int(diff_low/low_steps))
-            elif diff_high > 0:
-                price_target_score = int(diff_high / high_steps)
-            elif diff_mean < 0:
-                price_target_score = -1 * \
-                    abs(int(diff_mean*2 / (low_steps+high_steps)))
-            else:
-                price_target_score = int(diff_mean*2 / (low_steps+high_steps))
-            self.calc = price_target_score
-        except KeyError:
-            self.logger.exception("Error during calculation.")
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
+        prices = self.stock.get_data("recommendation")['priceTarget']
+        low = float(prices['low'])
+        high = float(prices['high'])
+        mean = float(prices['mean'])
+        current = self.bars[:, 0][-1]
+        diff_low = current - low
+        diff_high = current - high
+        diff_mean = current - mean
+        low_steps = (mean - low) / 10.0
+        if low_steps == 0:
+            low_steps = 1
+        high_steps = (high - mean) / 10.0
+        if high_steps == 0:
+            high_steps = 1
+        if diff_low < 0:
+            price_target_score = -1 * abs(int(diff_low/low_steps))
+        elif diff_high > 0:
+            price_target_score = int(diff_high / high_steps)
+        elif diff_mean < 0:
+            price_target_score = -1 * \
+                abs(int(diff_mean*2 / (low_steps+high_steps)))
+        else:
+            price_target_score = int(diff_mean*2 / (low_steps+high_steps))
+        self.calc = price_target_score
 
-        return BaseFilter.HOLD
+        return super(PriceTargetScore, self).analyse()
 
     def get_calculation(self):
         return self.calc

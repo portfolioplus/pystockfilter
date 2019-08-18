@@ -47,19 +47,10 @@ class StockIsHot(BaseFilter):
 
                 if val >= 0:
                     ascending_counter += (1.0 + idx*4)
-        if perf_sum != 0:
-            self.calc = (ascending_counter / perf_sum)
-            self.logger.debug("Calculated performance is '%f'." % self.calc)
-        else:
-            self.logger.warning("Division by zero.")
-            return BaseFilter.SELL
 
-        if self.calc >= self.buy:
-            return BaseFilter.BUY
-        elif self.calc <= self.sell:
-            return BaseFilter.SELL
-
-        return BaseFilter.HOLD
+        self.calc = (ascending_counter / perf_sum)
+        self.logger.debug("Calculated performance is '%f'." % self.calc)
+        return super(StockIsHot, self).analyse()
 
     def get_calculation(self):
         return self.calc

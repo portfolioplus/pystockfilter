@@ -66,7 +66,7 @@ class TesFilterBuilder(unittest.TestCase):
         # test build filters with all symbols
         cfg = {'symbols': ['ALL']}
         builder = BuildInternalFilters(cfg, logger)
-        self.assertEqual(builder.build(), 4)
+        self.assertEqual(builder.build(), 9)
 
     def test_build(self):
         """

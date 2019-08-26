@@ -19,7 +19,7 @@ with open('README.md', 'r') as fh:
 
 INSTALL_REQUIRES = (
     [
-        'pystockdb==1.0.7',
+        'pystockdb==1.0.8',
         'cython==0.29.13',
         'python-dateutil==2.8.0',
         'numpy==1.17.0',

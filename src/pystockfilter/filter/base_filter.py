@@ -7,6 +7,7 @@
   can be found in the LICENSE file.
 """
 import logging
+from datetime import datetime
 import numpy as np
 
 
@@ -22,6 +23,7 @@ class BaseFilter:
     def __init__(self, arguments, logger: logging.Logger):
         self.logger = logger
         self.need_bars = arguments['bars']
+        self.now_date = arguments.get('now_date', datetime.today())
         self.need_index_bars = arguments['index_bars']
         self.args = arguments['args']
         self.name = arguments['name']

@@ -75,4 +75,4 @@ class StockIsHot(BaseFilter):
         return np.diff(delta_list)
 
     def look_back_date(self):
-        return datetime.today() + relativedelta(months=-self.lookback)
+        return self.now_date + relativedelta(months=-self.lookback)

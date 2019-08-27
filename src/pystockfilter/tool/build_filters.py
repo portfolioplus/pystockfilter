@@ -72,7 +72,8 @@ class BuildFilters:
                         'Execute filter {}.'.format(my_filter.name)
                     )
                     self.__build(my_filter, stock, symbol)
-                except (TypeError, RuntimeError, KeyError, ZeroDivisionError, IndexError):
+                except (TypeError, RuntimeError, KeyError, ZeroDivisionError,
+                        IndexError):
                     self.logger.exception(
                         'Filter {} causes exceptions.'.format(my_filter.name)
                         )
@@ -81,6 +82,7 @@ class BuildFilters:
         return rc
 
     def __build(self, my_filter, stock, symbol):
+        my_filter.now_date = self.now_date
         if my_filter.look_back_date():
             my_filter.set_stock(stock)
             # set bar prices

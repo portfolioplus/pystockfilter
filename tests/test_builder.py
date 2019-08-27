@@ -64,7 +64,7 @@ class TesFilterBuilder(unittest.TestCase):
         self.assertTrue(signal is not None)
         self.assertEqual(signal.result.value, 5.0)
         # test build filters with all symbols
-        cfg = {'symbols': ['ALL']}
+        cfg['symbols'] = ['ALL']
         builder = BuildInternalFilters(cfg, logger)
         self.assertEqual(builder.build(), 9)
 

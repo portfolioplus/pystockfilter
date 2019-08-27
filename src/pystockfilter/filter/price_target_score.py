@@ -60,4 +60,4 @@ class PriceTargetScore(BaseFilter):
         return self.calc
 
     def look_back_date(self):
-        return datetime.today() + relativedelta(months=-self.lookback)
+        return self.now_date + relativedelta(months=-self.lookback)

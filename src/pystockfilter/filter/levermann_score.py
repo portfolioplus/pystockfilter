@@ -153,16 +153,36 @@ class LevermannScore(BaseFilter):
         return [last_close_6m_diff, last_close_12m_diff]
 
     def __compare_index_with_stock_performance(self):
-        close_prices = self.bars[:, 0]
-        stock_perf = Sih.get_performance(close_prices, 30)[::-1]
-        index_perf = Sih.get_performance(self.index_bars[:, 0], 30)[::-1]
+        date_stock = self.bars[:, 5]
+        date_index = self.index_bars[:, 5]
+        date_stock = date_stock[date_stock != np.array(None)]
+        date_index = date_index[date_index != np.array(None)]
+        index_dict = {}
+        # create stock and index close price list with equal date
+        for idx, value in enumerate(date_index):
+            for idy, valuey in enumerate(date_stock):
+                if value.date() == valuey.date():
+                    index_dict[idx] = idy
+                    break
+        # create new arrays and copy values by same date index
+        close_prices_stock = np.copy(self.bars[:, 0][[*index_dict.values()], ])
+        close_price_index = np.copy(self.index_bars[:, 0][[*index_dict], ])
+
+        stock_perf = Sih.get_performance(close_prices_stock, 30)[::-1]
+        index_perf = Sih.get_performance(close_price_index, 30)[::-1]
+
         perf_measure = 0
         if not hasattr(stock_perf, 'size') or not hasattr(index_perf, 'size') \
            or stock_perf.size == 0 or index_perf.size == 0:
             return perf_measure
 
-        for idx, perf in enumerate(np.nditer(index_perf)):
-            if perf > stock_perf[idx]:
+        if stock_perf.size != index_perf.size:
+            raise RuntimeError('Index and stock bar size is not equal.')
+
+        for idx, perf in enumerate(index_perf):
+            index_val = perf.flat[0]
+            stock_val = stock_perf.flat[idx]
+            if index_val > stock_val:
                 perf_measure += 1
             else:
                 perf_measure -= 1
@@ -321,4 +341,4 @@ class LevermannScore(BaseFilter):
         return self.calc
 
     def look_back_date(self):
-        return datetime.today() + relativedelta(months=-self.lookback)
+        return self.now_date + relativedelta(months=-self.lookback)

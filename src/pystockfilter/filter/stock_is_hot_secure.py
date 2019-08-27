@@ -44,4 +44,4 @@ class StockIsHotSecure(StockIsHot):
         return BaseFilter.analyse(self)
 
     def look_back_date(self):
-        return datetime.today() + relativedelta(months=-self.lookback*2)
+        return self.now_date + relativedelta(months=-self.lookback*2)

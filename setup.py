@@ -12,14 +12,14 @@
 from setuptools import setup, find_packages
 
 EXCLUDE_FROM_PACKAGES = ['test', 'test.*', 'test*']
-VERSION = '1.0.4'
+VERSION = '1.0.5'
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 INSTALL_REQUIRES = (
     [
-        'pystockdb==1.0.9',
+        'pystockdb>=1.0.10',
         'cython==0.29.13',
         'python-dateutil==2.8.0',
         'numpy==1.17.1',

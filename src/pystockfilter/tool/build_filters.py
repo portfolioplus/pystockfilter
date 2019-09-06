@@ -73,7 +73,7 @@ class BuildFilters:
                     )
                     self.__build(my_filter, stock, symbol)
                 except (TypeError, RuntimeError, KeyError, ZeroDivisionError,
-                        IndexError):
+                        IndexError, ValueError):
                     self.logger.exception(
                         'Filter {} causes exceptions.'.format(my_filter.name)
                         )

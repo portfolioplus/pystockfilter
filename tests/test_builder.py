@@ -18,6 +18,7 @@ from pony.orm import db_session
 from pystockdb.db.schema.stocks import Index, Price, Signal, Stock, Tag, db
 
 from pystockfilter.base.base_helper import BaseHelper
+from pystockfilter.filter.base_filter import BaseFilter
 from pystockfilter.filter.adx_filter import AdxFilter
 from pystockfilter.filter.levermann_score import LevermannScore
 from pystockfilter.filter.piotroski_score import PiotroskiScore
@@ -136,7 +137,7 @@ class TesFilterBuilder(unittest.TestCase):
               'lookback': 6
             }
         }
-        self.__filter_test(StockIsHot, args, [2,  0.5625])
+        self.__filter_test(StockIsHot, args, [BaseFilter.HOLD,  0.5625])
 
     def test_stock_is_hot_secure(self):
         args = {
@@ -151,7 +152,7 @@ class TesFilterBuilder(unittest.TestCase):
               'secure_value': 7
             }
         }
-        self.__filter_test(StockIsHotSecure, args, [0,  0.38])
+        self.__filter_test(StockIsHotSecure, args, [BaseFilter.SELL,  0.38])
 
     def test_adx(self):
         args = {
@@ -166,7 +167,7 @@ class TesFilterBuilder(unittest.TestCase):
               'parameter': 5
             }
         }
-        self.__filter_test(AdxFilter, args, [1,  43.26])
+        self.__filter_test(AdxFilter, args, [BaseFilter.BUY,  43.26])
 
     def test_rsi(self):
         args = {
@@ -181,7 +182,7 @@ class TesFilterBuilder(unittest.TestCase):
               'parameter': 5
             }
         }
-        self.__filter_test(RsiFilter, args, [1,  51.71])
+        self.__filter_test(RsiFilter, args, [BaseFilter.BUY,  51.71])
 
     def test_piotroski(self):
         args = {
@@ -193,7 +194,7 @@ class TesFilterBuilder(unittest.TestCase):
               'threshold_sell': -2,
             }
         }
-        self.__filter_test(PiotroskiScore, args, [2,  6])
+        self.__filter_test(PiotroskiScore, args, [BaseFilter.HOLD,  6])
 
     def test_levermann(self):
         args = {
@@ -206,7 +207,7 @@ class TesFilterBuilder(unittest.TestCase):
               'lookback': 12
             }
         }
-        self.__filter_test(LevermannScore, args, [0,  -1])
+        self.__filter_test(LevermannScore, args, [BaseFilter.SELL,  -1])
 
     def test_price_target_score(self):
         args = {
@@ -219,7 +220,7 @@ class TesFilterBuilder(unittest.TestCase):
                 'lookback': 1
             }
         }
-        self.__filter_test(PriceTargetScore, args, [0,  -4])
+        self.__filter_test(PriceTargetScore, args, [BaseFilter.SELL,  -4])
 
     @db_session
     def get_bars(self, symbol, my_filter):

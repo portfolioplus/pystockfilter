@@ -17,8 +17,8 @@ class BaseFilter:
     """
 
     SELL = 0
-    BUY = 1
-    HOLD = 2
+    HOLD = 1
+    BUY = 2
 
     def __init__(self, arguments, logger: logging.Logger):
         self.logger = logger

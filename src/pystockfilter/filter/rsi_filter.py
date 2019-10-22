@@ -22,7 +22,7 @@ class RsiFilter(BaseFilter):
     when threshold of 70 have been reached.
     """
 
-    NAME = 'AdxFilter'
+    NAME = 'RsiFilter'
 
     def __init__(self, arguments: dict, logger: logging.Logger):
         self.buy = arguments['args']['threshold_buy']

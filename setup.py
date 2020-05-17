@@ -22,7 +22,7 @@ INSTALL_REQUIRES = (
         'pystockdb>=1.0.11',
         'cython==0.29.17',
         'python-dateutil==2.8.1',
-        'numpy==1.18.3',
+        'numpy==1.18.4',
         'tulipy==0.4.0'
     ]
 )

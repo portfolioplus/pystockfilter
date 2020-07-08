@@ -146,8 +146,10 @@ arguments_div = {
     },
 }
 
+symbols = ["ADS.F", "WDI.F", "BAYN.F"]
+
 config_custom_filter = {
-    "symbols": fra_symbols,
+    "symbols": symbols,
     "filters": [DividendKings(arguments_div, logger)],
 }
 

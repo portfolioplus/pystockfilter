@@ -17,6 +17,10 @@ from dateutil.relativedelta import relativedelta
 from pony.orm import db_session
 from pystockdb.db.schema.stocks import Index, Price, Signal, Stock, Tag, db
 
+import sys
+
+sys.path.insert(0, 'src')
+
 from pystockfilter.base.base_helper import BaseHelper
 from pystockfilter.filter.base_filter import BaseFilter
 from pystockfilter.filter.adx_filter import AdxFilter
@@ -31,7 +35,6 @@ from pystockfilter.tool.build_internal_filters import BuildInternalFilters
 
 
 class TesFilterBuilder(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         test_dir = os.path.dirname(os.path.abspath(__file__))
@@ -40,11 +43,12 @@ class TesFilterBuilder(unittest.TestCase):
         if os.path.exists(db_path_test):
             os.remove(db_path_test)
         copyfile(db_path, db_path_test)
-        arguments = {'db_args': {
-            'provider': 'sqlite',
-            'filename': db_path_test,
-            'create_db': False
-          }
+        arguments = {
+            'db_args': {
+                'provider': 'sqlite',
+                'filename': db_path_test,
+                'create_db': False,
+            }
         }
         db.bind(**arguments["db_args"])
         db.generate_mapping()
@@ -53,14 +57,14 @@ class TesFilterBuilder(unittest.TestCase):
     def test_internal_create(self):
         logger = BaseHelper.setup_logger('test')
         cfg = {
-          'symbols': ['ADS.F'],
-          # fix date in this way because pony orm can not handel fakedatetime
-          'now_date': datetime.strptime('2019-08-07', '%Y-%m-%d')
+            'symbols': ['ADS.F'],
+            # fix date in this way because pony orm can not handel fakedatetime
+            'now_date': datetime.strptime('2019-08-07', '%Y-%m-%d'),
         }
         builder = BuildInternalFilters(cfg, logger)
         self.assertEqual(builder.build(), 0)
         signal = Signal.select(
-          lambda s: 'PiotroskiScore' in s.item.tags.name
+            lambda s: 'PiotroskiScore' in s.item.tags.name
         ).first()
         self.assertTrue(signal is not None)
         self.assertEqual(signal.result.value, 5.0)
@@ -77,34 +81,35 @@ class TesFilterBuilder(unittest.TestCase):
         logger = logging.getLogger('test')
         # create simple filter
         my_filter = StockIsHot(
-          {
-            'name': 'StockIsHot6Month',
-            'bars': True,
-            'index_bars': False,
-            'args': {
-              'threshold_buy': 0.8,
-              'threshold_sell': 0.5,
-              'intervals': [7, 30],
-              'lookback': 6
-            }
-          },
-          logger
-          )
+            {
+                'name': 'StockIsHot6Month',
+                'bars': True,
+                'index_bars': False,
+                'args': {
+                    'threshold_buy': 0.8,
+                    'threshold_sell': 0.5,
+                    'intervals': [7, 30],
+                    'lookback': 6,
+                },
+            },
+            logger,
+        )
         # check missing arguments
-        builder = BuildFilters(
-          {},
-          logger
-          )
+        builder = BuildFilters({}, logger)
         self.assertEqual(1, builder.build())
         # check simple build
         builder = BuildFilters(
-          {'filters': [my_filter], 'symbols': ['IFX.F']},
-          logger
-          )
+            {
+                'filters': [my_filter],
+                'symbols': ['IFX.F'],
+                'now_date': datetime(2019, 10, 5, 18, 00),
+            },
+            logger,
+        )
         self.assertEqual(0, builder.build())
         with db_session:
             tag_ctx = Tag.select(
-              lambda t: t.name == 'StockIsHot6Month'
+                lambda t: t.name == 'StockIsHot6Month'
             ).count()
             self.assertEqual(1, tag_ctx)
 
@@ -131,13 +136,13 @@ class TesFilterBuilder(unittest.TestCase):
             'bars': True,
             'index_bars': False,
             'args': {
-              'threshold_buy': 0.8,
-              'threshold_sell': 0.5,
-              'intervals': [7, 30],
-              'lookback': 6
-            }
+                'threshold_buy': 0.8,
+                'threshold_sell': 0.5,
+                'intervals': [7, 30],
+                'lookback': 6,
+            },
         }
-        self.__filter_test(StockIsHot, args, [BaseFilter.HOLD,  0.5625])
+        self.__filter_test(StockIsHot, args, [BaseFilter.HOLD, 0.5625])
 
     def test_stock_is_hot_secure(self):
         args = {
@@ -145,14 +150,14 @@ class TesFilterBuilder(unittest.TestCase):
             'bars': True,
             'index_bars': False,
             'args': {
-              'threshold_buy': 0.8,
-              'threshold_sell': 0.5,
-              'intervals': [7, 30],
-              'lookback': 6,
-              'secure_value': 7
-            }
+                'threshold_buy': 0.8,
+                'threshold_sell': 0.5,
+                'intervals': [7, 30],
+                'lookback': 6,
+                'secure_value': 7,
+            },
         }
-        self.__filter_test(StockIsHotSecure, args, [BaseFilter.SELL,  0.38])
+        self.__filter_test(StockIsHotSecure, args, [BaseFilter.SELL, 0.38])
 
     def test_adx(self):
         args = {
@@ -160,14 +165,14 @@ class TesFilterBuilder(unittest.TestCase):
             'bars': True,
             'index_bars': False,
             'args': {
-              'threshold_buy': 0.8,
-              'threshold_sell': 0.5,
-              'intervals': [7, 30],
-              'lookback': 6,
-              'parameter': 5
-            }
+                'threshold_buy': 0.8,
+                'threshold_sell': 0.5,
+                'intervals': [7, 30],
+                'lookback': 6,
+                'parameter': 5,
+            },
         }
-        self.__filter_test(AdxFilter, args, [BaseFilter.BUY,  43.26])
+        self.__filter_test(AdxFilter, args, [BaseFilter.BUY, 43.26])
 
     def test_rsi(self):
         args = {
@@ -175,52 +180,41 @@ class TesFilterBuilder(unittest.TestCase):
             'bars': True,
             'index_bars': False,
             'args': {
-              'threshold_buy': 0.8,
-              'threshold_sell': 0.5,
-              'intervals': [7, 30],
-              'lookback': 6,
-              'parameter': 5
-            }
+                'threshold_buy': 0.8,
+                'threshold_sell': 0.5,
+                'intervals': [7, 30],
+                'lookback': 6,
+                'parameter': 5,
+            },
         }
-        self.__filter_test(RsiFilter, args, [BaseFilter.BUY,  51.71])
+        self.__filter_test(RsiFilter, args, [BaseFilter.BUY, 51.71])
 
     def test_piotroski(self):
         args = {
             'name': 'pio',
             'bars': False,
             'index_bars': False,
-            'args': {
-              'threshold_buy': 8,
-              'threshold_sell': -2,
-            }
+            'args': {'threshold_buy': 8, 'threshold_sell': -2,},
         }
-        self.__filter_test(PiotroskiScore, args, [BaseFilter.HOLD,  6])
+        self.__filter_test(PiotroskiScore, args, [BaseFilter.HOLD, 6])
 
     def test_levermann(self):
         args = {
             'name': 'lev',
             'bars': True,
             'index_bars': True,
-            'args': {
-              'threshold_buy': 7,
-              'threshold_sell': 2,
-              'lookback': 12
-            }
+            'args': {'threshold_buy': 7, 'threshold_sell': 2, 'lookback': 12},
         }
-        self.__filter_test(LevermannScore, args, [BaseFilter.SELL,  -1])
+        self.__filter_test(LevermannScore, args, [BaseFilter.SELL, -1])
 
     def test_price_target_score(self):
         args = {
             'name': 'price',
             'bars': True,
             'index_bars': False,
-            'args': {
-                'threshold_buy': 8,
-                'threshold_sell': -2,
-                'lookback': 1
-            }
+            'args': {'threshold_buy': 8, 'threshold_sell': -2, 'lookback': 1},
         }
-        self.__filter_test(PriceTargetScore, args, [BaseFilter.SELL,  -4])
+        self.__filter_test(PriceTargetScore, args, [BaseFilter.SELL, -4])
 
     @db_session
     def get_bars(self, symbol, my_filter):
@@ -238,7 +232,7 @@ class TesFilterBuilder(unittest.TestCase):
         now = datetime.strptime('2019-07-30', '%Y-%m-%d')
         before = now + relativedelta(months=-my_filter.lookback)
         my_index = Index.select(
-          lambda i: symbol in i.stocks.price_item.symbols.name
+            lambda i: symbol in i.stocks.price_item.symbols.name
         ).first()
 
         bars = Price.select(

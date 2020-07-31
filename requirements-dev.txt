@@ -1,5 +1,5 @@
 wheel==0.34.2
-pytest==6.0.0
+pytest==6.0.1
 pytest-cov
 flake8==3.8.3
 autopep8==1.5.3

@@ -4,4 +4,4 @@ pytest-cov
 flake8==3.8.3
 autopep8==1.5.4
 freezegun==0.3.15
-black==19.10b0
+black==20.8b1

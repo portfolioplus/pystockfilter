@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: black
+    versions:
+    - 21.4b0
+    - 21.4b1
+  - dependency-name: flake8
+    versions:
+    - 3.9.0

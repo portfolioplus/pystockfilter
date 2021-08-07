@@ -7,8 +7,6 @@
   can be found in the LICENSE file.
 """
 import logging
-from datetime import datetime
-
 from dateutil.relativedelta import relativedelta
 
 from pystockfilter.filter.base_filter import BaseFilter
@@ -17,8 +15,10 @@ from pystockfilter.filter.stock_is_hot import StockIsHot
 
 class StockIsHotSecure(StockIsHot):
     """
-    This filter creates with the help of multiple polyfits in an given date range
-    a score for a stock. The value 1 is the best and 0 the worst.
+    This filter creates with the help of multiple polyfits in an
+    given date range a score for a stock. The value 1 is the best
+    and 0 the worst.
+
     A stock with a score between 0.75 and 1. shows a good performance.
     """
 

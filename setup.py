@@ -10,9 +10,16 @@
 """
 
 from setuptools import setup, find_packages
+import re
+
 
 EXCLUDE_FROM_PACKAGES = ['test', 'test.*', 'test*']
-VERSION = '1.0.8'
+VERSION = '0.0.0'
+
+with open('src/pystockfilter/__init__.py', 'r') as fd:
+    VERSION = re.search(
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
+    ).group(1)
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()

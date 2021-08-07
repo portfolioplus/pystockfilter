@@ -7,8 +7,6 @@
   can be found in the LICENSE file.
 """
 import logging
-
-from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from pystockfilter.filter.base_filter import BaseFilter

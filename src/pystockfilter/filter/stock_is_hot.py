@@ -7,8 +7,6 @@
   can be found in the LICENSE file.
 """
 import logging
-from datetime import datetime
-
 import numpy as np
 from dateutil.relativedelta import relativedelta
 

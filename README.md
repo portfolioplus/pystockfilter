@@ -1,9 +1,10 @@
 # pystockfilter
 
-[![Build Status](https://travis-ci.org/portfolioplus/pystockfilter.svg?branch=master)](https://travis-ci.org/portfolioplus/pystockfilter)
+![Release Build](https://github.com/portfolioplus/pystockfilter/workflows/Release%20Build/badge.svg)
+![CI Build](https://github.com/portfolioplus/pystockfilter/workflows/CI/badge.svg)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/pystockfilter?style=plastic)
 [![Coverage Status](https://coveralls.io/repos/github/portfolioplus/pystockfilter/badge.svg?branch=master)](https://coveralls.io/github/portfolioplus/pystockfilter?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/07e6231a5a8c415a9f27736e02a286da)](https://www.codacy.com/app/SlashGordon/pystockfilter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=portfolioplus/pystockfilter&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ac0c6fc68b74408c976007bd3db823f0)](https://www.codacy.com/gh/portfolioplus/pystockfilter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=portfolioplus/pystockfilter&amp;utm_campaign=Badge_Grade)
 
 Create your own fundamental or chart based stock filter. All you need is a database set up with [pystockdb](https://github.com/portfolioplus/pystockdb).
 

@@ -14,19 +14,40 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [3.8]
+        python: [3.11]
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v1
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
+
+      - name: Cache Poetry and dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ matrix.python }}-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-${{ matrix.python }}-
+
+      - name: Install libcurl dependency
+        run: sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Install Poetry
+        run: pip install poetry
+
       - name: Install dependencies
-        run: pip install tox
+        run: poetry install --no-interaction
+
       - name: Run tests
-        run: tox
+        run: poetry run pytest tests/ --junitxml test-results/test.xml --cov src/pysymbolscanner --cov-report term-missing
+
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1.5
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

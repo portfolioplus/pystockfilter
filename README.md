@@ -66,7 +66,6 @@ import math
 from datetime import datetime
 
 import numpy as np
-import tulipy as ti
 import yfinance as yf
 from dateutil.relativedelta import relativedelta
 from pony.orm import db_session, select

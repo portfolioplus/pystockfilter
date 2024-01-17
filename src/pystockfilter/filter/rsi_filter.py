@@ -8,10 +8,12 @@
 """
 import logging
 import numpy as np
-import tulipy as ti
+import pandas_ta as ta
+import pandas as pd
 from dateutil.relativedelta import relativedelta
 
 from pystockfilter.filter.base_filter import BaseFilter
+from pystockfilter.tool.helper import float_range_list
 
 
 class RsiFilter(BaseFilter):
@@ -20,26 +22,41 @@ class RsiFilter(BaseFilter):
     when threshold of 70 have been reached.
     """
 
-    NAME = 'RsiFilter'
+    NAME = "RsiFilter"
+    optimize_parameter = {
+        "parameter": range(4, 20, 1),
+        "threshold_buy": float_range_list(60.0, 95.0, 5.0),
+        "threshold_sell": float_range_list(20.0, 45.0, 5.0),
+        "constraint": lambda p: p.threshold_sell < p.threshold_buy,
+    }
 
     def __init__(self, arguments: dict, logger: logging.Logger):
-        self.buy = arguments['args']['threshold_buy']
-        self.sell = arguments['args']['threshold_sell']
-        self.lookback = arguments['args']['lookback']
-        self.parameter = arguments['args']['parameter']
+        self.buy = arguments["args"]["threshold_buy"]
+        self.sell = arguments["args"]["threshold_sell"]
+        self.lookback = arguments["args"]["lookback"]
+        self.parameter = arguments["args"]["parameter"]
         super(RsiFilter, self).__init__(arguments, logger)
 
-    def analyse(self):
+    def set_parameter(self, parameter: dict):
+        buy = parameter.get("threshold_buy", None)
+        if buy is not None:
+            self.buy = buy
+        sell = parameter.get("threshold_sell", None)
+        if sell is not None:
+            self.sell = sell
+        parameter = parameter.get("parameter", None)
+        if parameter is not None:
+            self.parameter = parameter
 
-        close = self.bars[:, 0].copy(order='C').astype('float64')
-        if not (close.size - self.parameter > 0):
+    def analyse(self):
+        if not (self.bars.size - self.parameter > 0):
             raise RuntimeError
-        my_result = ti.rsi(close, self.parameter)
-        median = np.median(my_result)
+        my_result = ta.rsi(self.bars, self.parameter)
+        median = my_result.median()
         if not np.isnan(median):
             self.calc = float(median)
         else:
-            self.logger.warning("Data causes nan. {}".format(close))
+            self.logger.warning("Data causes nan. {}".format(self.bars))
         return super(RsiFilter, self).analyse()
 
     def get_calculation(self):

@@ -127,3 +127,6 @@ src/pystockdb/tools/database_create.sqlite
 package-lock.json
 .vscode/settings.json
 .vscode/*
+tests/testdb_tmp.sqlite
+.DS_Store
+*.html

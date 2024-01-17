@@ -9,6 +9,7 @@
 import logging
 from datetime import datetime
 import numpy as np
+import pandas as pd
 
 
 class BaseFilter:
@@ -22,12 +23,31 @@ class BaseFilter:
 
     def __init__(self, arguments, logger: logging.Logger):
         self.logger = logger
-        self.need_bars = arguments['bars']
-        self.now_date = arguments.get('now_date', datetime.today())
-        self.need_index_bars = arguments['index_bars']
-        self.args = arguments['args']
-        self.name = arguments['name']
+        self.need_bars = arguments["bars"]
+        self.now_date = arguments.get("now_date", datetime.today())
+        self.need_index_bars = arguments["index_bars"]
+        self.args = arguments["args"]
+        self.name = arguments["name"]
         self.calc = 0
+
+    def set_parameter(self, parameter: dict):
+        """
+        Sets the parameter for the filter
+        :param parameter: dictionary with parameter
+        :return: nothing
+        """
+        raise NotImplementedError()
+
+    def run(self, pandas_df: pd.DataFrame, parameter: dict):
+        """
+        Runs the filter
+        :param pandas_series: pandas series
+        :param parameter: dictionary with parameter
+        :return: nothing
+        """
+        self.bars = pandas_df
+        self.set_parameter(parameter)
+        return self.analyse()
 
     def analyse(self):
         """
@@ -61,12 +81,23 @@ class BaseFilter:
         :return: nothing
         """
         # convert to numpy
-        self.bars = np.asarray([[i.close,
-                                i.open,
-                                i.volume,
-                                i.high,
-                                i.low,
-                                i.date] for i in bars])
+        # rename columns to lower case
+
+        self.bars = self.convert_bars(bars)
+
+    @staticmethod
+    def convert_bars(bars):
+        """
+        Converts bars to numpy array
+        :param bars:
+        :return: numpy array
+        """
+        # convert list to pandas df
+        df = pd.DataFrame(
+            [[i.close, i.open, i.volume, i.high, i.low, i.date] for i in bars],
+            columns=["Close", "Open", "Volume", "High", "Low", "Date"],
+        )
+        return df
 
     def set_index_bars(self, bars):
         """
@@ -75,12 +106,7 @@ class BaseFilter:
         :return: nothing
         """
         # convert to numpy
-        self.index_bars = np.asarray([[i.close,
-                                       i.open,
-                                       i.volume,
-                                       i.high,
-                                       i.low,
-                                       i.date] for i in bars])
+        self.index_bars = self.convert_bars(bars)
 
     def set_stock(self, stock):
         """

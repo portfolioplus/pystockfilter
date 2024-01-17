@@ -23,9 +23,10 @@ class BaseHelper:
         """
         from pytz import timezone
         from os import environ
-        if environ.get('TZ') is not None:
-            return timezone(os.environ['TZ'])
-        return timezone('Europe/Berlin')
+
+        if environ.get("TZ") is not None:
+            return timezone(os.environ["TZ"])
+        return timezone("Europe/Berlin")
 
     @staticmethod
     def setup_logger(name: str):
@@ -38,10 +39,15 @@ class BaseHelper:
         log_formatter = logging.Formatter(
             "%(asctime)s [%(filename)s:%(lineno)s - %(funcName)20s()]"
             " [%(levelname)-5.5s] %(message)s"
-            )
+        )
         file_handler = logging.FileHandler(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                         "..", "%s_broker.log" % name), mode='w')
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "..",
+                "%s_broker.log" % name,
+            ),
+            mode="w",
+        )
         file_handler.setFormatter(log_formatter)
         logger.addHandler(file_handler)
         console_handler = logging.StreamHandler()

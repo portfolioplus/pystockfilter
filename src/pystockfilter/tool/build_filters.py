@@ -11,8 +11,18 @@ import json
 import logging
 
 from pony.orm import commit, db_session, select
-from pystockdb.db.schema.stocks import (Argument, Item, Price, Result, Signal,
-                                        Stock, Symbol, Index, Tag, Type)
+from pystockdb.db.schema.stocks import (
+    Argument,
+    Item,
+    Price,
+    Result,
+    Signal,
+    Stock,
+    Symbol,
+    Index,
+    Tag,
+    Type,
+)
 
 from pystockfilter.filter.base_filter import BaseFilter
 
@@ -26,11 +36,11 @@ class BuildFilters:
         self.symbols = None
         self.filters = None
         # just for unit testing purposes
-        self.now_date = arguments.get('now_date', datetime.datetime.now())
-        if 'filters' in arguments:
-            self.filters = arguments['filters']
-        if 'symbols' in arguments:
-            self.symbols = arguments['symbols']
+        self.now_date = arguments.get("now_date", datetime.datetime.now())
+        if "filters" in arguments:
+            self.filters = arguments["filters"]
+        if "symbols" in arguments:
+            self.symbols = arguments["symbols"]
         self.logger = logger
 
     def set_filters(self, filters):
@@ -51,16 +61,19 @@ class BuildFilters:
             return 1
         rc = 0
         # select all symbols with price connection
-        if 'ALL' in self.symbols:
+        if "ALL" in self.symbols:
             # without index symbols
             symbols = list(
-                select(p.symbol.name for p in Price
-                       if Tag.IDX not in p.symbol.item.tags.name)
+                select(
+                    p.symbol.name
+                    for p in Price
+                    if Tag.IDX not in p.symbol.item.tags.name
+                )
             )
             self.symbols = symbols
 
         for symbol_str in self.symbols:
-            self.logger.info('Create filters for {}.'.format(symbol_str))
+            self.logger.info("Create filters for {}.".format(symbol_str))
             # get stock of symbol
             stock = Stock.select(
                 (lambda s: symbol_str in s.price_item.symbols.name)
@@ -68,15 +81,19 @@ class BuildFilters:
             symbol = Symbol.get(name=symbol_str)
             for my_filter in self.filters:
                 try:
-                    self.logger.info(
-                        'Execute filter {}.'.format(my_filter.name)
-                    )
+                    self.logger.info("Execute filter {}.".format(my_filter.name))
                     self.__build(my_filter, stock, symbol)
-                except (TypeError, RuntimeError, KeyError, ZeroDivisionError,
-                        IndexError, ValueError):
+                except (
+                    TypeError,
+                    RuntimeError,
+                    KeyError,
+                    ZeroDivisionError,
+                    IndexError,
+                    ValueError,
+                ):
                     self.logger.exception(
-                        'Filter {} causes exceptions.'.format(my_filter.name)
-                        )
+                        "Filter {} causes exceptions.".format(my_filter.name)
+                    )
                     rc += 1
         commit()
         return rc
@@ -97,8 +114,7 @@ class BuildFilters:
             if my_filter.need_index_bars:
                 # get index symbol of stock
                 index_sym = select(
-                    i.price_item.symbols.name for i in Index
-                    if i in stock.indexs
+                    i.price_item.symbols.name for i in Index if i in stock.indexs
                 ).first()
 
                 bars = Price.select(
@@ -112,22 +128,20 @@ class BuildFilters:
             strategy_value = my_filter.get_calculation()
             fil_typ = Type.get(name=Type.FIL)
 
-            fil_tag = Tag.select(lambda t: t.name == my_filter.name and
-                                 t.type.name == Type.FIL) or \
-                Tag(name=my_filter.name, type=fil_typ)
+            fil_tag = Tag.select(
+                lambda t: t.name == my_filter.name and t.type.name == Type.FIL
+            ) or Tag(name=my_filter.name, type=fil_typ)
 
             my_res = Result(
-                value=strategy_value,
-                status=strategy_status,
-                date=self.now_date
+                value=strategy_value, status=strategy_status, date=self.now_date
             )
 
             # add arguments to result
             arg_typ = Type.get(name=Type.ARG)
             for arg in my_filter.args:
-                arg_tag = Tag.select(lambda t: t.name == arg and
-                                     t.type.name == Type.ARG) or \
-                                     Tag(name=arg, type=arg_typ)
+                arg_tag = Tag.select(
+                    lambda t: t.name == arg and t.type.name == Type.ARG
+                ) or Tag(name=arg, type=arg_typ)
                 item = Item()
                 item.add_tags([arg_tag])
                 arg_str = json.dumps(my_filter.args[arg])

@@ -22,10 +22,10 @@ class StockIsHotSecure(StockIsHot):
     A stock with a score between 0.75 and 1. shows a good performance.
     """
 
-    NAME = 'StockIsHotSecure'
+    NAME = "StockIsHotSecure"
 
     def __init__(self, arguments: dict, logger: logging.Logger):
-        self.secure_value = arguments['args']["secure_value"]
+        self.secure_value = arguments["args"]["secure_value"]
         super(StockIsHotSecure, self).__init__(arguments, logger)
 
     def analyse(self):
@@ -33,15 +33,15 @@ class StockIsHotSecure(StockIsHot):
         last_value = self.bars[:, 1][-1]
         if first_value == 0:
             return BaseFilter.HOLD
-        secure_value = last_value/first_value
+        secure_value = last_value / first_value
         # The stock shows strong losses over a longer period of time.
         # So we decrease the score.
-        self.bars = self.bars[:][int(len(self.bars) / 2):]
+        self.bars = self.bars[:][int(len(self.bars) / 2) :]
         status = super(StockIsHotSecure, self).analyse()
         if secure_value > self.secure_value:
             return status
-        self.calc = self.calc/2
+        self.calc = self.calc / 2
         return BaseFilter.analyse(self)
 
     def look_back_date(self):
-        return self.now_date + relativedelta(months=-self.lookback*2)
+        return self.now_date + relativedelta(months=-self.lookback * 2)

@@ -1,4 +1,4 @@
-# pystockfilter
+# PyStockFilter
 
 ![Release Build](https://github.com/portfolioplus/pystockfilter/workflows/Release%20Build/badge.svg)
 ![CI Build](https://github.com/portfolioplus/pystockfilter/workflows/CI/badge.svg)
@@ -6,158 +6,42 @@
 [![Coverage Status](https://coveralls.io/repos/github/portfolioplus/pystockfilter/badge.svg?branch=master)](https://coveralls.io/github/portfolioplus/pystockfilter?branch=master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ac0c6fc68b74408c976007bd3db823f0)](https://www.codacy.com/gh/portfolioplus/pystockfilter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=portfolioplus/pystockfilter&amp;utm_campaign=Badge_Grade)
 
-Create your own fundamental or chart based stock filter. All you need is a database set up with [pystockdb](https://github.com/portfolioplus/pystockdb).
+PyStockFilter is a Python library that allows users to create custom stock filters using a range of fundamental and technical indicators. With support for data sources like Yahoo Finance, local data, and `pystockdb`, PyStockFilter is a versatile solution for building and backtesting technical and fundamental trading strategies.
 
-## built-in filters
+## Features
 
-### technical filters
+- **Data Compatibility**: Integrates with Yahoo Finance, local data, and `pystockdb`.
+- **Built-in Indicators**: Includes essential technical indicators, and supports custom indicator creation.
+- **Backtesting**: Enables testing of strategies on historical data.
+- **Optimization Tools**: Offers parameter optimization, including sequential and chunked data optimization.
+- **Custom Strategy Support**: Extendable with your own strategies and indicators.
 
-- [x] [ADX](https://en.wikipedia.org/wiki/Average_directional_movement_index)
-- [x] [RSI](https://en.wikipedia.org/wiki/Relative_strength_index)
-- [x] StockIsHot: Simple trend indicator
-- [x] StockIsHotSecure: improved StockIsHot version.
+## Built-in Filters
 
-### fundamental filters
+### Technical Filters
+PyStockFilter includes several popular technical indicators, which can be used out of the box or customized:
 
-- [x] Lervermann
-- [x] [Piotroski F-Score](https://en.wikipedia.org/wiki/Piotroski_F-Score)
-- [x] Price Target Score: analysts price targets compared with actual price
+- **Simple Moving Average (SMA)**
+- **Exponential Moving Average (EMA)**
+- **Relative Strength Index (RSI)**
+- **Ultimate Oscillator (UO)**
 
-## install
+For custom indicators, refer to the examples in the `src/pystockfilter/strategy` directory.
+
+## Installation
+
+To install PyStockFilter, run:
 
 ```shell
 pip install pystockfilter
 ```
 
-## quick start
+## Quick Start Guide
 
-Build internal filters:
+For detailed examples on setting up strategies, defining parameters, and running the optimizer, please visit the [Examples Directory](https://github.com/portfolioplus/pystockfilter/tree/master/examples) in the PyStockFilter repository.
 
-```python
-import logging
-from pystockdb.db.schema.stocks import db
+## Issue Tracker
 
-from pystockfilter.tool.build_internal_filters import BuildInternalFilters
+Report issues, request features, or contribute via the GitHub Issue Tracker:
 
-# connect to database
-arguments = {'db_args': {
-    'provider': 'sqlite',
-    'filename': db_path_test,
-    'create_db': False
-    }
-}
-db.bind(**arguments["db_args"])
-db.generate_mapping()
-# create internal filters for Adidas AG and Infineon
-arguments = {'symbols': ['ADS.F', 'IFX.F']}
-builder = BuildInternalFilters(arguments, logger)
-builder.build()
-# create internal filters for all stocks in database
-arguments = {'symbols': ['ALL']}
-builder = BuildInternalFilters(arguments, logger)
-builder.build()
-```
-
-Build custom filters:
-
-```python
-import logging
-import math
-from datetime import datetime
-
-import numpy as np
-import tulipy as ti
-import yfinance as yf
-from dateutil.relativedelta import relativedelta
-from pony.orm import db_session, select
-from pystockdb.db.schema.stocks import Price, Tag
-from pystockfilter.filter.base_filter import BaseFilter
-from pystockfilter.base.base_helper import BaseHelper
-from pystockfilter.tool.build_filters import BuildFilters
-
-# custom filter 
-class DividendKings(BaseFilter):
-    """
-    Calculates median of last dividends
-    """
-
-    NAME = 'DividendKings'
-
-    def __init__(self, arguments: dict, logger: logging.Logger):
-        self.buy = arguments['args']['threshold_buy']
-        self.sell = arguments['args']['threshold_sell']
-        self.lookback = arguments['args']['lookback']
-        self.max_yield = arguments['args']['max_div_yield']
-        super(DividendKings, self).__init__(arguments, logger)
-
-    @db_session
-    def analyse(self):
-        symbol = select(sym.name for sym in self.stock.price_item.symbols
-                        if Tag.YAO in sym.item.tags.name).first()
-        try:
-            yao_item = yf.Ticker(symbol)
-            data = yao_item.dividends
-        except ValueError:
-            raise RuntimeError("Couldn't load dividends for {}".format(symbol))
-
-        dates = data.index.array
-        drop = []
-        # let us calculate the dividend yield
-        for my_date in dates:
-            price = Price.select(
-                    lambda p: p.symbol.name == symbol
-                    and p.date.date() == my_date.date()
-                ).first()
-            if price:
-                div_yield = (data[my_date] / price.close) * 100
-                if div_yield > self.max_yield:
-                    drop.append(my_date)
-                    self.logger.error(
-                        '{} has a non plausible div yield at {} ({} = {} / {} * 100).'
-                        .format(symbol, my_date, div_yield, data[my_date], price.close)
-                    )
-                else:
-                    data[my_date] = div_yield
-            else:
-                drop.append(my_date)
-        data = data.drop(labels=drop)
-        self.calc = data.median(axis=0)
-        if self.calc is None or math.isnan(self.calc):
-            raise RuntimeError("Couldn't calculate dividend yield.")
-        return super(DividendKings, self).analyse()
-
-    def get_calculation(self):
-        return self.calc
-
-    def look_back_date(self):
-        return self.now_date + relativedelta(months=-self.lookback)
-
-logger = BaseHelper.setup_logger("custom filter")
-
-arguments_div = {
-    "name": "DividendKings",
-    "bars": False,
-    "index_bars": False,
-    "args": {
-        "threshold_buy": 3,
-        "threshold_sell": 0.2,
-        "intervals": None,
-        "max_div_yield": 9,
-        "lookback": 2,
-    },
-}
-
-symbols = ["ADS.F", "WDI.F", "BAYN.F"]
-
-config_custom_filter = {
-    "symbols": symbols,
-    "filters": [DividendKings(arguments_div, logger)],
-}
-
-custom = BuildFilters(config_custom_filter, logger)
-custom.build()
-```
-
-## issue tracker
-
-[https://github.com/portfolioplus/pystockfilter/issuese](https://github.com/portfolioplus/pystockfilter/issues")
+[PyStockFilter Issue Tracker](https://github.com/portfolioplus/pystockfilter/issues)

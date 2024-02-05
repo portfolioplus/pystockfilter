@@ -7,10 +7,16 @@
   can be found in the LICENSE file.
 """
 
+from enum import Enum
 from backtesting import Strategy
 
+class Signals(Enum):
+    BUY = 1
+    SELL = 2
+    HOLD = 3
 
 class BaseStrategy(Strategy):
+
 
     @property
     def name(self):

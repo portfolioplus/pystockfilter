@@ -1,12 +1,10 @@
 from datetime import datetime
-import logging
-from pystockfilter.filter.base_filter import BaseFilter
 from pystockfilter.strategy.rsi_strategy import RSIStrategy as rsi
 from pystockfilter.strategy.uo_ema_cross_ema_strategy import (
-    UlimateEmaCrossEmaStrategy as uo1,
+    UltimateEmaCrossEmaStrategy as uo1,
 )
 from pystockfilter.strategy.uo_ema_cross_close_strategy import (
-    UlimateEmaCrossCloseStrategy as uo2,
+    UltimateEmaCrossCloseStrategy as uo2,
 )
 from pystockfilter.tool.helper import float_range_list
 import pystockfilter.tool.start_backtest as start_backtest

@@ -7,29 +7,29 @@
   can be found in the LICENSE file.
 """
 from pystockfilter.strategy.uo_ema_cross_close_strategy import (
-    UlimateEmaCrossCloseStrategy,
+    UltimateEmaCrossCloseStrategy,
 )
 
 from backtesting.lib import crossover
 
 
-class UlimateEmaCrossEmaStrategy(UlimateEmaCrossCloseStrategy):
+class UltimateEmaCrossEmaStrategy(UltimateEmaCrossCloseStrategy):
     para_ema_long = 100
     para_ema_short = 40
 
     def init(self):
         self.uo = self.I(
-            UlimateEmaCrossEmaStrategy.algo_ultimate,
+            UltimateEmaCrossEmaStrategy.algo_ultimate,
             self.data,
             self.para_uo_short,
             self.para_uo_medium,
             self.para_uo_long,
         )
         self.ema_short = self.I(
-            UlimateEmaCrossEmaStrategy.algo_ema, self.data, self.para_ema_short
+            UltimateEmaCrossEmaStrategy.algo_ema, self.data, self.para_ema_short
         )
         self.ema_long = self.I(
-            UlimateEmaCrossEmaStrategy.algo_ema, self.data, self.para_ema_long
+            UltimateEmaCrossEmaStrategy.algo_ema, self.data, self.para_ema_long
         )
 
     def next(self):

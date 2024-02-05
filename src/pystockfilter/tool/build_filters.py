@@ -24,7 +24,7 @@ from pystockdb.db.schema.stocks import (
     Type,
 )
 
-from pystockfilter.filter.base_filter import BaseFilter
+from pystockfilter.strategy.base_strategy import Signals
 
 
 class BuildFilters:
@@ -152,9 +152,10 @@ class BuildFilters:
             my_sig = Signal(item=sig_item, result=my_res)
             # add stock to signal
             my_sig.price_items.add(symbol.price_item)
-            if strategy_status == BaseFilter.BUY:
+            # todo 
+            if strategy_status == Signals.BUY:
                 self.logger.debug("Buy %s", symbol)
-            elif strategy_status == BaseFilter.HOLD:
+            elif strategy_status == Signals.HOLD:
                 self.logger.debug("Hold %s", symbol)
             else:
                 self.logger.debug("Do not buy Stock %s ", symbol)

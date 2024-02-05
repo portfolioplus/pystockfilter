@@ -15,7 +15,7 @@ from pystockfilter.strategy.base_strategy import BaseStrategy
 from backtesting.lib import crossover
 
 
-class UlimateStrategy(BaseStrategy):
+class UltimateStrategy(BaseStrategy):
     para_uo_short = 7
     para_uo_medium = 14
     para_uo_long = 28
@@ -42,7 +42,7 @@ class UlimateStrategy(BaseStrategy):
 
     def init(self):
         self.uo = self.I(
-            UlimateStrategy.algo_ultimate,
+            UltimateStrategy.algo_ultimate,
             self.data,
             self.para_uo_short,
             self.para_uo_medium,

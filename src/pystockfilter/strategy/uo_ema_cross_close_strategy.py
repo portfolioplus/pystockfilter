@@ -10,24 +10,24 @@
 import pandas_ta as ta
 import pandas as pd
 
-from pystockfilter.strategy.uo_strategy import UlimateStrategy
+from pystockfilter.strategy.uo_strategy import UltimateStrategy
 
 from backtesting.lib import crossover
 
 
-class UlimateEmaCrossCloseStrategy(UlimateStrategy):
+class UltimateEmaCrossCloseStrategy(UltimateStrategy):
     para_ema = 14
 
     def init(self):
         self.uo = self.I(
-            UlimateStrategy.algo_ultimate,
+            UltimateStrategy.algo_ultimate,
             self.data,
             self.para_uo_short,
             self.para_uo_medium,
             self.para_uo_long,
         )
         self.ema = self.I(
-            UlimateEmaCrossCloseStrategy.algo_ema, self.data, self.para_ema
+            UltimateEmaCrossCloseStrategy.algo_ema, self.data, self.para_ema
         )
         self.close = self.I(lambda x: x.Close, self.data)
 

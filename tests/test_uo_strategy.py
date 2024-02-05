@@ -1,6 +1,5 @@
 from datetime import datetime
 import logging
-from pystockfilter.filter.base_filter import BaseFilter
 from pystockfilter.strategy.uo_strategy import UlimateStrategy as uo
 from pystockfilter.strategy.uo_ema_cross_ema_strategy import (
     UlimateEmaCrossEmaStrategy as uo1,

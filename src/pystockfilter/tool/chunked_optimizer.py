@@ -1,6 +1,7 @@
 import multiprocessing as mp
 from backtesting import Backtest
 from pystockfilter.strategy.base_strategy import BaseStrategy
+from pystockfilter.strategy.uo_strategy import UltimateStrategy
 
 
 class ChunkedOptimizer:

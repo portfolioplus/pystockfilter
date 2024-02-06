@@ -8,12 +8,15 @@ from pystockfilter.tool.start_base import BacktestResult, StartBase
 
 class StartChunkedOptimizer(StartBase):
 
-    def __init__(self, ticker_symbols: list[str], strategies: list[BaseStrategy], optimizer_parameters: list[dict]):
+    def __init__(self, ticker_symbols: list[str], strategies: list[BaseStrategy], optimizer_parameters: list[dict], chunk_size=100, num_processes=4):
 
         super().__init__(ticker_symbols, strategies, optimizer_parameters)
+        self.chunk_size = chunk_size
+        self.num_processes = num_processes
+
 
     def run_implementation(self, strategy: BaseStrategy, symbol: str, df: pd.DataFrame, commission: float, parameter: dict) -> BacktestResult:
-        bt = ChunkedOptimizer(strategy, parameter, df, commission=commission)
+        bt = ChunkedOptimizer(strategy, parameter, df, commission=commission, chunk_size=self.chunk_size, num_processes=self.num_processes)
         result = bt.optimize()
         return BacktestResult(
             symbol=symbol,

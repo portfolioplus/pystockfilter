@@ -24,7 +24,7 @@ def test_uo(mock_datetime_now, setup_test_database):
     strategies = [uo]
     stocks = ["IFX.F"]
     bt = start_backtest.StartBacktest(stocks, strategies)
-    stats = bt.run_backtest()
+    stats = bt.run()
     assert len(stats) == 1
     assert pytest.approx(stats[0].stats["Return [%]"], 0.01) == -4.86
 
@@ -56,8 +56,8 @@ def test_uo_optimize(mock_datetime_now, setup_test_database):
 def test_uo_optimize_2(mock_datetime_now, setup_test_database):
     parameters = [
         {
-            "para_uo_upper": range(-20, 100, 1),
-            "para_uo_lower": range(-80, 50, 1),
+            "para_uo_upper": range(0, 30, 1),
+            "para_uo_lower": range(0, 30, 1),
             "constraint": lambda p: p.para_uo_upper > p.para_uo_lower,
             "maximize": "Equity Final [$]",
             "max_tries": 2000,
@@ -68,6 +68,10 @@ def test_uo_optimize_2(mock_datetime_now, setup_test_database):
     bt = start_optimizer.StartOptimizer(stocks, strategies, parameters)
     stats = bt.run()
     assert len(stats) == 1
+    assert pytest.approx(stats[0].stats["Return [%]"], 0.01) == 6.37
+    assert stats[0].parameter["para_uo_upper"] > 20
+    assert stats[0].parameter["para_uo_lower"] > 20
+    assert stats[0].parameter["para_uo_upper"] > stats[0].parameter["para_uo_lower"]
 
 def constraint_uo(p):
     return p.para_uo_upper > p.para_uo_lower
@@ -77,15 +81,18 @@ def constraint_uo(p):
 def test_uo_chunked_optimize(mock_datetime_now, setup_test_database):
     parameters = [
         {
-            "para_uo_upper": range(-20, 100, 1),
-            "para_uo_lower": range(-80, 50, 1),
+            "para_uo_upper": range(-100, 100, 1),
+            "para_uo_lower": range(-100, 50, 1),
             "constraint": constraint_uo,
             "maximize": "Equity Final [$]",
-            "max_tries": 2000,
+            "max_tries": 6000,
         }
     ]
     strategies = [uo]
     stocks = ["IFX.F"]
-    bt = StartChunkedOptimizer(stocks, strategies, parameters)
+    # chunk size and history months can cause small data sets and let the optimizer fail 
+    # if window parameter is larger than the data set
+    bt = StartChunkedOptimizer(stocks, strategies, parameters, chunk_size=70)
     stats = bt.run()
     assert len(stats) == 1
+    assert stats[0].stats["Return [%]"] > 0.0

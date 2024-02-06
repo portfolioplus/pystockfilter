@@ -1,4 +1,5 @@
 import multiprocessing as mp
+import os
 from backtesting import Backtest
 from pystockfilter.strategy.base_strategy import BaseStrategy
 from pystockfilter.strategy.uo_strategy import UltimateStrategy
@@ -65,7 +66,8 @@ class ChunkedOptimizer:
 
     def optimize(self) -> dict:
         best_stats = None
-
+        if "CI" in os.environ:  
+            mp.set_start_method('spawn', force=True)
         pool = mp.Pool(self.num_processes)
         all_chunks = list(self._chunks(self.data))
         results = pool.map(self._optimize_strategy, all_chunks)

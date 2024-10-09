@@ -1,7 +1,969 @@
-# Changelog
+# CHANGELOG
 
-<!--next-version-placeholder-->
+
+## v2.0.0 (2024-10-09)
+
+### Breaking
+
+* feat: integrate backtesting.py as core dependency for backtests
+
+BREAKING CHANGE: Replaced existing backtesting engine with backtesting.py, which changes the way backtests are defined and run. This may affect compatibility with existing backtest setups. ([`700f32f`](https://github.com/portfolioplus/pystockfilter/commit/700f32f3572b59daaa3568312f6a8ae9f1cb78ea))
+
 
 ## v1.0.9 (2021-08-11)
-### Fix
-* Removed unused imports and fixed build ([`bb2b10d`](https://github.com/portfolioplus/pystockfilter/commit/bb2b10d167c696310598486d880a18fd935976fd))
+
+### Fixes
+
+* fix: Removed unused imports and fixed build
+Removed travis and added github actions
+Removed unused imports ([`bb2b10d`](https://github.com/portfolioplus/pystockfilter/commit/bb2b10d167c696310598486d880a18fd935976fd))
+
+### Unknown
+
+* release 1.0.9 [skip ci] ([`5b4a9d0`](https://github.com/portfolioplus/pystockfilter/commit/5b4a9d0432022defb7e3d32c25c077acc83c9ad7))
+
+* Bump black from 20.8b1 to 21.4b2
+
+Bumps [black](https://github.com/psf/black) from 20.8b1 to 21.4b2.
+- [Release notes](https://github.com/psf/black/releases)
+- [Changelog](https://github.com/psf/black/blob/master/CHANGES.md)
+- [Commits](https://github.com/psf/black/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`2430845`](https://github.com/portfolioplus/pystockfilter/commit/2430845977b608f9aebafaac5800865a0a83b265))
+
+* Bump autopep8 from 1.5.5 to 1.5.7
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5.5 to 1.5.7.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5.5...v1.5.7)
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`6c29038`](https://github.com/portfolioplus/pystockfilter/commit/6c29038743ce9022a0d6b39f982862bd3851d2c1))
+
+* Bump pytest from 6.2.2 to 6.2.4
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.2.2 to 6.2.4.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.2.2...6.2.4)
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`881b9bc`](https://github.com/portfolioplus/pystockfilter/commit/881b9bc87ec23436efd32f3d9073e12ec8d128f9))
+
+* Bump flake8 from 3.8.4 to 3.9.2
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.8.4 to 3.9.2.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.8.4...3.9.2)
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`90e1d62`](https://github.com/portfolioplus/pystockfilter/commit/90e1d629527e70b44f42eef242f9f7ebeb5b2414))
+
+* Bump numpy from 1.20.1 to 1.20.3
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.20.1 to 1.20.3.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/main/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.20.1...v1.20.3)
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`2311e5a`](https://github.com/portfolioplus/pystockfilter/commit/2311e5aa6ac4c3300bbb39574e2379e4a2b368c8))
+
+* Upgrade to GitHub-native Dependabot ([`12dc171`](https://github.com/portfolioplus/pystockfilter/commit/12dc171af0215072e22408d773cc448e2037655b))
+
+* Bump cython from 0.29.21 to 0.29.22
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.21 to 0.29.22.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.21...0.29.22)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`366ec32`](https://github.com/portfolioplus/pystockfilter/commit/366ec32a0eca933ae8559a1ec8f53ed6b3419674))
+
+* Bump numpy from 1.20.0 to 1.20.1
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.20.0 to 1.20.1.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.20.0...v1.20.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`a1a76c6`](https://github.com/portfolioplus/pystockfilter/commit/a1a76c6911df5dda49fcd5f68c48b3969807823d))
+
+* Bump autopep8 from 1.5.4 to 1.5.5
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5.4 to 1.5.5.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5.4...v1.5.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`1094ac1`](https://github.com/portfolioplus/pystockfilter/commit/1094ac1b3301e7893f5b0a9471f7734af9b3f57b))
+
+* Bump numpy from 1.19.5 to 1.20.0
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.5 to 1.20.0.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.5...v1.20.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b2d868a`](https://github.com/portfolioplus/pystockfilter/commit/b2d868a2f2ea97c795f7404d40585a797c9de78d))
+
+* Bump pytest from 6.2.1 to 6.2.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.2.1 to 6.2.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.2.1...6.2.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`e05e896`](https://github.com/portfolioplus/pystockfilter/commit/e05e896b6c480dba825f31b922523c5f15a73358))
+
+* Bump freezegun from 1.0.0 to 1.1.0
+
+Bumps [freezegun](https://github.com/spulec/freezegun) from 1.0.0 to 1.1.0.
+- [Release notes](https://github.com/spulec/freezegun/releases)
+- [Changelog](https://github.com/spulec/freezegun/blob/master/CHANGELOG)
+- [Commits](https://github.com/spulec/freezegun/compare/1.0.0...1.1.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`8b853cf`](https://github.com/portfolioplus/pystockfilter/commit/8b853cf95cd2a719b4874c722700fc93d0c59662))
+
+* Bump numpy from 1.19.4 to 1.19.5
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.4 to 1.19.5.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.4...v1.19.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`1f375a6`](https://github.com/portfolioplus/pystockfilter/commit/1f375a6143f8cf1db99ccd9f5a1e25185d97847e))
+
+* Bump wheel from 0.36.1 to 0.36.2
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.36.1 to 0.36.2.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.36.1...0.36.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`83046af`](https://github.com/portfolioplus/pystockfilter/commit/83046afab37d4800cafd649b138ccad53c186c92))
+
+* Bump pytest from 6.1.2 to 6.2.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.1.2 to 6.2.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.1.2...6.2.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`1f5d84b`](https://github.com/portfolioplus/pystockfilter/commit/1f5d84bd9c34e814850f7ea0e2bf5e9773de24c8))
+
+* Bump wheel from 0.35.1 to 0.36.1
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.35.1 to 0.36.1.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.35.1...0.36.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`89b4c73`](https://github.com/portfolioplus/pystockfilter/commit/89b4c73fc6851486359632f7112eaf8a8ca844ce))
+
+* Removed FOSSA ([`f973e3f`](https://github.com/portfolioplus/pystockfilter/commit/f973e3f14b59cfcc407a6cd8025e45e1370dbe3e))
+
+* Add license scan report and status
+
+Signed off by: fossabot <badges@fossa.com> ([`33a31fe`](https://github.com/portfolioplus/pystockfilter/commit/33a31fec4282085f412d796cb989c344d4b6ecc1))
+
+* Bump numpy from 1.19.3 to 1.19.4
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.3 to 1.19.4.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.3...v1.19.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`37b27e4`](https://github.com/portfolioplus/pystockfilter/commit/37b27e4d4af9e6168186ff98777af70735b44f28))
+
+* Merge pull request #68 from portfolioplus/dependabot/pip/numpy-1.19.3
+
+Bump numpy from 1.19.2 to 1.19.3 ([`e25224a`](https://github.com/portfolioplus/pystockfilter/commit/e25224a2cb069112e17982e5ab3d3ae1500f800b))
+
+* Bump numpy from 1.19.2 to 1.19.3
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.2 to 1.19.3.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.2...v1.19.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`9f6bfcf`](https://github.com/portfolioplus/pystockfilter/commit/9f6bfcf964f53a449800f227bfcf248cc88fec8a))
+
+* Merge pull request #69 from portfolioplus/dependabot/pip/pytest-6.1.2
+
+Bump pytest from 6.1.1 to 6.1.2 ([`4b3834f`](https://github.com/portfolioplus/pystockfilter/commit/4b3834f78cf11f8834e8cf5c5ec74975762b08b7))
+
+* Bump pytest from 6.1.1 to 6.1.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.1.1 to 6.1.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.1.1...6.1.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`45b5fad`](https://github.com/portfolioplus/pystockfilter/commit/45b5faddd7edde18b53d55fca4d08fdb66953f27))
+
+* Merge pull request #66 from portfolioplus/dependabot/pip/flake8-3.8.4
+
+Bump flake8 from 3.8.3 to 3.8.4 ([`989a30f`](https://github.com/portfolioplus/pystockfilter/commit/989a30ffa692f18c73decb8b1e8d9f5f908ce0cc))
+
+* Bump flake8 from 3.8.3 to 3.8.4
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.8.3 to 3.8.4.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.8.3...3.8.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`d86ee67`](https://github.com/portfolioplus/pystockfilter/commit/d86ee6712dd6f6442156ad112984d9401ef41137))
+
+* Merge pull request #67 from portfolioplus/dependabot/pip/pytest-6.1.1
+
+Bump pytest from 6.1.0 to 6.1.1 ([`460246d`](https://github.com/portfolioplus/pystockfilter/commit/460246d7a74bcc96687cb94c1ad0f234c2ed3687))
+
+* Bump pytest from 6.1.0 to 6.1.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.1.0 to 6.1.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.1.0...6.1.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`2b2bf05`](https://github.com/portfolioplus/pystockfilter/commit/2b2bf0545de6a18a19d035f96ce78892c3f3af44))
+
+* Merge pull request #65 from portfolioplus/dependabot/pip/pytest-6.1.0
+
+Bump pytest from 6.0.2 to 6.1.0 ([`69eb7b2`](https://github.com/portfolioplus/pystockfilter/commit/69eb7b211b0f0369a034ff964e59370d7e533b95))
+
+* Bump pytest from 6.0.2 to 6.1.0
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.0.2 to 6.1.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.0.2...6.1.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`85cd5c7`](https://github.com/portfolioplus/pystockfilter/commit/85cd5c7d81ce2126d8bd164a2fb50892c5191e2f))
+
+* Merge pull request #63 from portfolioplus/dependabot/pip/pytest-6.0.2
+
+Bump pytest from 6.0.1 to 6.0.2 ([`8114350`](https://github.com/portfolioplus/pystockfilter/commit/8114350fc3a07c967cf9fc5821b7f6739c456807))
+
+* Bump pytest from 6.0.1 to 6.0.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.0.1 to 6.0.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.0.1...6.0.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`8cecfcd`](https://github.com/portfolioplus/pystockfilter/commit/8cecfcdac992b4e17fdf81c6451fb014ba94be87))
+
+* Merge pull request #62 from portfolioplus/dependabot/pip/numpy-1.19.2
+
+Bump numpy from 1.19.1 to 1.19.2 ([`93f4b1c`](https://github.com/portfolioplus/pystockfilter/commit/93f4b1cbffccad00e653b10486470894bb8a5570))
+
+* Bump numpy from 1.19.1 to 1.19.2
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.1 to 1.19.2.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.1...v1.19.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`1190dbf`](https://github.com/portfolioplus/pystockfilter/commit/1190dbf7016e214fd46e4ffb940db6acad13b898))
+
+* Merge pull request #61 from portfolioplus/dependabot/pip/freezegun-1.0.0
+
+Bump freezegun from 0.3.15 to 1.0.0 ([`4a9a9c1`](https://github.com/portfolioplus/pystockfilter/commit/4a9a9c1547e1d59c32a6e159058e1bd6bdc83dc5))
+
+* Bump freezegun from 0.3.15 to 1.0.0
+
+Bumps [freezegun](https://github.com/spulec/freezegun) from 0.3.15 to 1.0.0.
+- [Release notes](https://github.com/spulec/freezegun/releases)
+- [Changelog](https://github.com/spulec/freezegun/blob/master/CHANGELOG)
+- [Commits](https://github.com/spulec/freezegun/compare/0.3.15...1.0.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`d494b85`](https://github.com/portfolioplus/pystockfilter/commit/d494b85ae89b78e13b58209894beeb085f90d566))
+
+* Merge pull request #60 from portfolioplus/dependabot/pip/black-20.8b1
+
+Bump black from 19.10b0 to 20.8b1 ([`e9745e0`](https://github.com/portfolioplus/pystockfilter/commit/e9745e0a75e53f5086481b3d84c03cda1c791333))
+
+* Bump black from 19.10b0 to 20.8b1
+
+Bumps [black](https://github.com/psf/black) from 19.10b0 to 20.8b1.
+- [Release notes](https://github.com/psf/black/releases)
+- [Changelog](https://github.com/psf/black/blob/master/CHANGES.md)
+- [Commits](https://github.com/psf/black/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`33bab71`](https://github.com/portfolioplus/pystockfilter/commit/33bab715964602cf432f6b81b77f54901199b2bb))
+
+* Merge pull request #59 from portfolioplus/dependabot/pip/wheel-0.35.1
+
+Bump wheel from 0.35.0 to 0.35.1 ([`c212c2a`](https://github.com/portfolioplus/pystockfilter/commit/c212c2a6dc4a42e9b04f3b8d2744345b7d2f6733))
+
+* Bump wheel from 0.35.0 to 0.35.1
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.35.0 to 0.35.1.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.35.0...0.35.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`2dc8b23`](https://github.com/portfolioplus/pystockfilter/commit/2dc8b237b6a635d1ba7c96400364f1d2f7b1dfc8))
+
+* Merge pull request #58 from portfolioplus/dependabot/pip/wheel-0.35.0
+
+Bump wheel from 0.34.2 to 0.35.0 ([`923c048`](https://github.com/portfolioplus/pystockfilter/commit/923c048856db8021560246ca72883f48a46d44d8))
+
+* Bump wheel from 0.34.2 to 0.35.0
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.34.2 to 0.35.0.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.34.2...0.35.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`c522b77`](https://github.com/portfolioplus/pystockfilter/commit/c522b77f5d6e26fbd354fac0a567ff6b41ec77d3))
+
+* Merge pull request #57 from portfolioplus/dependabot/pip/autopep8-1.5.4
+
+Bump autopep8 from 1.5.3 to 1.5.4 ([`0aa4b17`](https://github.com/portfolioplus/pystockfilter/commit/0aa4b17bedd29d668c6be89bee6afb782d1b933b))
+
+* Bump autopep8 from 1.5.3 to 1.5.4
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5.3 to 1.5.4.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5.3...v1.5.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`6f6a891`](https://github.com/portfolioplus/pystockfilter/commit/6f6a89145779b6c8f84129711254d22195ead0a5))
+
+* Merge pull request #56 from portfolioplus/dependabot/pip/pytest-6.0.1
+
+Bump pytest from 6.0.0 to 6.0.1 ([`47952df`](https://github.com/portfolioplus/pystockfilter/commit/47952df7a0eaaba16b1e5cad8a4bc5acf4a798e2))
+
+* Bump pytest from 6.0.0 to 6.0.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 6.0.0 to 6.0.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/6.0.0...6.0.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`6e64ea6`](https://github.com/portfolioplus/pystockfilter/commit/6e64ea610287ba130e1d714392ff0b0aaec2bdbd))
+
+* Merge pull request #55 from portfolioplus/dependabot/pip/pytest-6.0.0
+
+Bump pytest from 5.4.3 to 6.0.0 ([`d230ec0`](https://github.com/portfolioplus/pystockfilter/commit/d230ec0a0a0136f73487f3baa9d415b2da91cbce))
+
+* Bump pytest from 5.4.3 to 6.0.0
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.4.3 to 6.0.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.4.3...6.0.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`f646773`](https://github.com/portfolioplus/pystockfilter/commit/f646773321a8f8b6bfcc90664e6ff59b8c3c3ed2))
+
+* Merge pull request #54 from portfolioplus/dependabot/pip/numpy-1.19.1
+
+Bump numpy from 1.19.0 to 1.19.1 ([`8fa7b42`](https://github.com/portfolioplus/pystockfilter/commit/8fa7b42738a22e9e04b190b673541be051da750b))
+
+* Bump numpy from 1.19.0 to 1.19.1
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.19.0 to 1.19.1.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.19.0...v1.19.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`ae334e1`](https://github.com/portfolioplus/pystockfilter/commit/ae334e11c6a70b71088247f355e1bd392f4779d8))
+
+* Fixed unit test ([`994c70f`](https://github.com/portfolioplus/pystockfilter/commit/994c70f2efabb8a45e644e23cd2b069168eb395c))
+
+* Merge pull request #53 from portfolioplus/dependabot/pip/cython-0.29.21
+
+Bump cython from 0.29.20 to 0.29.21 ([`7d4371b`](https://github.com/portfolioplus/pystockfilter/commit/7d4371b830fc55465204902b31cb44ee5029bbaf))
+
+* Bump cython from 0.29.20 to 0.29.21
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.20 to 0.29.21.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.20...0.29.21)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`e2f767d`](https://github.com/portfolioplus/pystockfilter/commit/e2f767dfcf253cd066aa603be0fa60ebda81bceb))
+
+* Update README.md ([`de009af`](https://github.com/portfolioplus/pystockfilter/commit/de009afca27e20ea38a41396fb5c5de455ffa084))
+
+* Update README.md
+
+Added doc for custom filters ([`20a88af`](https://github.com/portfolioplus/pystockfilter/commit/20a88af26802121086b45b0c9b6084eddca1d909))
+
+* Merge pull request #52 from portfolioplus/dependabot/pip/numpy-1.19.0
+
+Bump numpy from 1.18.5 to 1.19.0 ([`edbcd7d`](https://github.com/portfolioplus/pystockfilter/commit/edbcd7d0d4d8eeb603647d85cfe2364009a4606f))
+
+* Bump numpy from 1.18.5 to 1.19.0
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.5 to 1.19.0.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.5...v1.19.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`d18bd31`](https://github.com/portfolioplus/pystockfilter/commit/d18bd313b57ad6b79789cfc0b42d30ce9c8652f6))
+
+* Merge pull request #51 from portfolioplus/dependabot/pip/cython-0.29.20
+
+Bump cython from 0.29.19 to 0.29.20 ([`ba02646`](https://github.com/portfolioplus/pystockfilter/commit/ba02646e07bf1f2b9e3aea0475019ba2196b278b))
+
+* Bump cython from 0.29.19 to 0.29.20
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.19 to 0.29.20.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.19...0.29.20)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`4e34f17`](https://github.com/portfolioplus/pystockfilter/commit/4e34f17a1cb99bfa50d34a9a3a755c79c0e38918))
+
+* Merge pull request #50 from portfolioplus/dependabot/pip/flake8-3.8.3
+
+Bump flake8 from 3.8.2 to 3.8.3 ([`6098135`](https://github.com/portfolioplus/pystockfilter/commit/6098135f49f560955517db632e0527f677fdb7d0))
+
+* Bump flake8 from 3.8.2 to 3.8.3
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.8.2 to 3.8.3.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.8.2...3.8.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`040e001`](https://github.com/portfolioplus/pystockfilter/commit/040e001d8feb5578726b276151ab40120ebd99c8))
+
+* Merge pull request #48 from portfolioplus/dependabot/pip/pytest-5.4.3
+
+Bump pytest from 5.4.2 to 5.4.3 ([`f930a5f`](https://github.com/portfolioplus/pystockfilter/commit/f930a5ff28472fff6ee3bd24d9252d02cea93215))
+
+* Bump pytest from 5.4.2 to 5.4.3
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.4.2 to 5.4.3.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.4.2...5.4.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`a2266b1`](https://github.com/portfolioplus/pystockfilter/commit/a2266b125ddd964416dd7fc072dc2f05d2c1feae))
+
+* Merge pull request #49 from portfolioplus/dependabot/pip/numpy-1.18.5
+
+Bump numpy from 1.18.4 to 1.18.5 ([`61bdaac`](https://github.com/portfolioplus/pystockfilter/commit/61bdaac5182dcfdc0eafc2a0a281855b202458b4))
+
+* Bump numpy from 1.18.4 to 1.18.5
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.4 to 1.18.5.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.4...v1.18.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`11a193d`](https://github.com/portfolioplus/pystockfilter/commit/11a193d46bd20de181b1a064e5b25560f6394fb9))
+
+* Merge pull request #47 from portfolioplus/dependabot/pip/autopep8-1.5.3
+
+Bump autopep8 from 1.5.2 to 1.5.3 ([`ae61f6c`](https://github.com/portfolioplus/pystockfilter/commit/ae61f6cb0df9bbee4961f686a51b6586a8e4ca0e))
+
+* Bump autopep8 from 1.5.2 to 1.5.3
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5.2 to 1.5.3.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5.2...v1.5.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`7852191`](https://github.com/portfolioplus/pystockfilter/commit/7852191c6523d02c66efe5774165317038bc6407))
+
+* Merge pull request #46 from portfolioplus/dependabot/pip/flake8-3.8.2
+
+Bump flake8 from 3.7.9 to 3.8.2 ([`cf5d0ed`](https://github.com/portfolioplus/pystockfilter/commit/cf5d0ed4fee2b91b24fc5f0684299d83ab0562b7))
+
+* Bump flake8 from 3.7.9 to 3.8.2
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.7.9 to 3.8.2.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.7.9...3.8.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`96cd3b3`](https://github.com/portfolioplus/pystockfilter/commit/96cd3b3a8f74f922fabe5f5f8f0546bcce32d1f2))
+
+* Merge pull request #45 from portfolioplus/dependabot/pip/cython-0.29.19
+
+Bump cython from 0.29.18 to 0.29.19 ([`6cb0ed7`](https://github.com/portfolioplus/pystockfilter/commit/6cb0ed7859f5a82dc4119b8691e0ab1d7c0f15b7))
+
+* Bump cython from 0.29.18 to 0.29.19
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.18 to 0.29.19.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.18...0.29.19)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`a341231`](https://github.com/portfolioplus/pystockfilter/commit/a3412317f9abc024f89048d2c43ec656467dedfa))
+
+* Merge pull request #44 from portfolioplus/dependabot/pip/cython-0.29.18
+
+Bump cython from 0.29.17 to 0.29.18 ([`296d476`](https://github.com/portfolioplus/pystockfilter/commit/296d476180870a2e7af4ae3a99973ca76f282daf))
+
+* Bump cython from 0.29.17 to 0.29.18
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.17 to 0.29.18.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.17...0.29.18)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`11387a7`](https://github.com/portfolioplus/pystockfilter/commit/11387a7ae378f4b60306cf1d1f29379648a8effa))
+
+* Merge pull request #42 from portfolioplus/dependabot/pip/pytest-5.4.2
+
+Bump pytest from 5.4.1 to 5.4.2 ([`6f84070`](https://github.com/portfolioplus/pystockfilter/commit/6f84070be51305b9dd09d66c17824c7b820d37e7))
+
+* Bump pytest from 5.4.1 to 5.4.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.4.1 to 5.4.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.4.1...5.4.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`0c5211a`](https://github.com/portfolioplus/pystockfilter/commit/0c5211a8f57bd9a23e496a06d3409a7acb97235d))
+
+* Merge pull request #41 from portfolioplus/dependabot/pip/numpy-1.18.4
+
+Bump numpy from 1.18.3 to 1.18.4 ([`0008ef6`](https://github.com/portfolioplus/pystockfilter/commit/0008ef6634b448b3edc447733fd225c071ca6a84))
+
+* Bump numpy from 1.18.3 to 1.18.4
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.3 to 1.18.4.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.3...v1.18.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`d9df941`](https://github.com/portfolioplus/pystockfilter/commit/d9df9415249124be460c91cee7aae6226c546af0))
+
+* Merge pull request #40 from portfolioplus/dependabot/pip/cython-0.29.17
+
+Bump cython from 0.29.16 to 0.29.17 ([`50da607`](https://github.com/portfolioplus/pystockfilter/commit/50da607c773f998bd66ada61343a93f41550ed2c))
+
+* Bump cython from 0.29.16 to 0.29.17
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.16 to 0.29.17.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/commits)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`3446279`](https://github.com/portfolioplus/pystockfilter/commit/3446279845e3f0de43a149c26886b5b6cbe240ce))
+
+* Merge pull request #38 from portfolioplus/dependabot/pip/numpy-1.18.3
+
+Bump numpy from 1.18.2 to 1.18.3 ([`77d3a3a`](https://github.com/portfolioplus/pystockfilter/commit/77d3a3a8b0da703cde5ac4da2810ab6c5cf6d077))
+
+* Bump numpy from 1.18.2 to 1.18.3
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.2 to 1.18.3.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.2...v1.18.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`508e95a`](https://github.com/portfolioplus/pystockfilter/commit/508e95ad422f9b5ad58a05da9f034aa2064c5c2c))
+
+* Merge pull request #39 from portfolioplus/dependabot/pip/autopep8-1.5.2
+
+Bump autopep8 from 1.5.1 to 1.5.2 ([`55c8904`](https://github.com/portfolioplus/pystockfilter/commit/55c89048f634aba73dcecf1568fd9302faf9f32b))
+
+* Bump autopep8 from 1.5.1 to 1.5.2
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5.1 to 1.5.2.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5.1...v1.5.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b6236e5`](https://github.com/portfolioplus/pystockfilter/commit/b6236e5ccec42704268cfbbc2422e1bea076b287))
+
+* Merge pull request #37 from portfolioplus/dependabot/pip/autopep8-1.5.1
+
+Bump autopep8 from 1.5 to 1.5.1 ([`15ca0d9`](https://github.com/portfolioplus/pystockfilter/commit/15ca0d9df5dac20950308b6519ee241d46577786))
+
+* Bump autopep8 from 1.5 to 1.5.1
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.5 to 1.5.1.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.5...v1.5.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`ba96473`](https://github.com/portfolioplus/pystockfilter/commit/ba9647324e1201c0a65e6809aaf40884490fd83c))
+
+* Merge pull request #36 from portfolioplus/dependabot/pip/cython-0.29.16
+
+Bump cython from 0.29.15 to 0.29.16 ([`3dd859f`](https://github.com/portfolioplus/pystockfilter/commit/3dd859f45223baafe310992f1d76be2b468efd9b))
+
+* Bump cython from 0.29.15 to 0.29.16
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.15 to 0.29.16.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.15...0.29.16)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`2f71bf3`](https://github.com/portfolioplus/pystockfilter/commit/2f71bf337b8c4057eb8bfc60eaa57e29c7d061ab))
+
+* Merge pull request #35 from portfolioplus/dependabot/pip/numpy-1.18.2
+
+Bump numpy from 1.18.1 to 1.18.2 ([`ff4ceca`](https://github.com/portfolioplus/pystockfilter/commit/ff4cecabad395fbdfd3d3305f0535d288a42f960))
+
+* Bump numpy from 1.18.1 to 1.18.2
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.1 to 1.18.2.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.1...v1.18.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`17a02f7`](https://github.com/portfolioplus/pystockfilter/commit/17a02f726ca5bb10195c55a38c94e92d1cffc559))
+
+* Merge pull request #34 from portfolioplus/dependabot/pip/pytest-5.4.1
+
+Bump pytest from 5.3.5 to 5.4.1 ([`b7ffcf3`](https://github.com/portfolioplus/pystockfilter/commit/b7ffcf38356e0ae7937e03bed9cad993a326cb7e))
+
+* Bump pytest from 5.3.5 to 5.4.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.3.5 to 5.4.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.3.5...5.4.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`c6455cd`](https://github.com/portfolioplus/pystockfilter/commit/c6455cd339d1bbc5e7e3ec45e8b69c673f15c541))
+
+* Merge pull request #29 from portfolioplus/dependabot/pip/pytest-5.3.5
+
+Bump pytest from 5.3.2 to 5.3.5 ([`24c2f1c`](https://github.com/portfolioplus/pystockfilter/commit/24c2f1cae9e1bfab0b644537f9cda10a019940c4))
+
+* Bump pytest from 5.3.2 to 5.3.5
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.3.2 to 5.3.5.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.3.2...5.3.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`c760d06`](https://github.com/portfolioplus/pystockfilter/commit/c760d06ff58470e2256cd72724fb9c1e0fd042af))
+
+* Merge pull request #26 from portfolioplus/dependabot/pip/autopep8-1.5
+
+Bump autopep8 from 1.4.4 to 1.5 ([`69f2f09`](https://github.com/portfolioplus/pystockfilter/commit/69f2f09e4609d1afd120b8592f32911804ceee72))
+
+* Bump autopep8 from 1.4.4 to 1.5
+
+Bumps [autopep8](https://github.com/hhatto/autopep8) from 1.4.4 to 1.5.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v1.4.4...v1.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b9ea4fd`](https://github.com/portfolioplus/pystockfilter/commit/b9ea4fd5a06865fbfdbb58dca36c66b4b037ea56))
+
+* Merge pull request #30 from portfolioplus/dependabot/pip/wheel-0.34.2
+
+Bump wheel from 0.33.6 to 0.34.2 ([`cbfc23d`](https://github.com/portfolioplus/pystockfilter/commit/cbfc23d98c37eff853a2fce5a7d7f9e64ab41f58))
+
+* Bump wheel from 0.33.6 to 0.34.2
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.33.6 to 0.34.2.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.33.6...0.34.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`60059d0`](https://github.com/portfolioplus/pystockfilter/commit/60059d028013685c91472dddbc61f8721503cccc))
+
+* Merge pull request #32 from portfolioplus/dependabot/pip/freezegun-0.3.15
+
+Bump freezegun from 0.3.12 to 0.3.15 ([`6f99c30`](https://github.com/portfolioplus/pystockfilter/commit/6f99c305f212438bd94566b630c7b979beee6236))
+
+* Bump freezegun from 0.3.12 to 0.3.15
+
+Bumps [freezegun](https://github.com/spulec/freezegun) from 0.3.12 to 0.3.15.
+- [Release notes](https://github.com/spulec/freezegun/releases)
+- [Changelog](https://github.com/spulec/freezegun/blob/master/CHANGELOG)
+- [Commits](https://github.com/spulec/freezegun/compare/0.3.12...0.3.15)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`0fee60d`](https://github.com/portfolioplus/pystockfilter/commit/0fee60dfd6b00d365a4384680b8d91ee90bdaa57))
+
+* Merge pull request #31 from portfolioplus/dependabot/pip/cython-0.29.15
+
+Bump cython from 0.29.14 to 0.29.15 ([`700708c`](https://github.com/portfolioplus/pystockfilter/commit/700708ca5c741c154e12a973b4c22759229dcc2a))
+
+* Bump cython from 0.29.14 to 0.29.15
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.14 to 0.29.15.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.14...0.29.15)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`aca116a`](https://github.com/portfolioplus/pystockfilter/commit/aca116ae139b41532790dc304785af758be06f51))
+
+* Merge pull request #22 from portfolioplus/dependabot/pip/numpy-1.18.1
+
+Bump numpy from 1.18.0 to 1.18.1 ([`3440589`](https://github.com/portfolioplus/pystockfilter/commit/344058934280adbde383c68240598a4f20aa0013))
+
+* Bump numpy from 1.18.0 to 1.18.1
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.18.0 to 1.18.1.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.18.0...v1.18.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`7afc322`](https://github.com/portfolioplus/pystockfilter/commit/7afc3220724835b07e75e5b40948e71bb13e4727))
+
+* Merge pull request #21 from portfolioplus/dependabot/pip/numpy-1.18.0
+
+Bump numpy from 1.17.4 to 1.18.0 ([`396e637`](https://github.com/portfolioplus/pystockfilter/commit/396e63750f7ec62394f0d5c0c8346065c08100a1))
+
+* Bump numpy from 1.17.4 to 1.18.0
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.17.4 to 1.18.0.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.17.4...v1.18.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`e1dfde5`](https://github.com/portfolioplus/pystockfilter/commit/e1dfde53814231d1f5b6f835e21557a46724b020))
+
+* Merge pull request #20 from portfolioplus/dependabot/pip/pytest-5.3.2
+
+Bump pytest from 5.3.1 to 5.3.2 ([`d1b1690`](https://github.com/portfolioplus/pystockfilter/commit/d1b1690cbf06a5405e6434281ba12ba702e6b038))
+
+* Bump pytest from 5.3.1 to 5.3.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.3.1 to 5.3.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.3.1...5.3.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`88ebef1`](https://github.com/portfolioplus/pystockfilter/commit/88ebef1f917119f83fcabbb6e3ba83be39d33f8d))
+
+* Merge pull request #19 from portfolioplus/dependabot/pip/pytest-5.3.1
+
+Bump pytest from 5.3.0 to 5.3.1 ([`590aac1`](https://github.com/portfolioplus/pystockfilter/commit/590aac182103b38588f95079af45ea254cecae5d))
+
+* Bump pytest from 5.3.0 to 5.3.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.3.0 to 5.3.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.3.0...5.3.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`a79b8ce`](https://github.com/portfolioplus/pystockfilter/commit/a79b8ce043a1e419b265982162abca304fdaf976))
+
+* Merge pull request #18 from portfolioplus/dependabot/pip/pytest-5.3.0
+
+Bump pytest from 5.2.4 to 5.3.0 ([`f117c06`](https://github.com/portfolioplus/pystockfilter/commit/f117c063e6d51db7f0311793f97cdffb4327a2bd))
+
+* Bump pytest from 5.2.4 to 5.3.0
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.2.4 to 5.3.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.2.4...5.3.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`00712e8`](https://github.com/portfolioplus/pystockfilter/commit/00712e8cdbe2c07657a3b055c1669e6fd91046e5))
+
+* Merge pull request #17 from portfolioplus/dependabot/pip/pytest-5.2.4
+
+Bump pytest from 5.2.3 to 5.2.4 ([`14f52e3`](https://github.com/portfolioplus/pystockfilter/commit/14f52e377a5a79a18577a9114d20e21070d9dd3f))
+
+* Bump pytest from 5.2.3 to 5.2.4
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.2.3 to 5.2.4.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.2.3...5.2.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`0b6ad1b`](https://github.com/portfolioplus/pystockfilter/commit/0b6ad1b18835471bc129ed46789083cbe325aa32))
+
+* Merge pull request #16 from portfolioplus/dependabot/pip/pytest-5.2.3
+
+Bump pytest from 5.2.2 to 5.2.3 ([`8bc6d1a`](https://github.com/portfolioplus/pystockfilter/commit/8bc6d1ad1559d94d00abbc39dba47a91240a1f39))
+
+* Bump pytest from 5.2.2 to 5.2.3
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.2.2 to 5.2.3.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.2.2...5.2.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`d376573`](https://github.com/portfolioplus/pystockfilter/commit/d376573efa637e10b95718a1aea8ad1634177428))
+
+* Update README.md
+
+Added download stats. ([`86f0899`](https://github.com/portfolioplus/pystockfilter/commit/86f08991769a75e1220cbab0a8683c5660c65724))
+
+* Merge pull request #15 from portfolioplus/dependabot/pip/numpy-1.17.4
+
+Bump numpy from 1.17.3 to 1.17.4 ([`fbee724`](https://github.com/portfolioplus/pystockfilter/commit/fbee7245b3ca9acd1bf3da21a720f250e57d9732))
+
+* Bump numpy from 1.17.3 to 1.17.4
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.17.3 to 1.17.4.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.17.3...v1.17.4)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`717a1b2`](https://github.com/portfolioplus/pystockfilter/commit/717a1b2c842e46631acab9255068bf30d562c18e))
+
+* Merge pull request #13 from portfolioplus/dependabot/pip/python-dateutil-2.8.1
+
+Bump python-dateutil from 2.8.0 to 2.8.1 ([`6d53388`](https://github.com/portfolioplus/pystockfilter/commit/6d53388f4d647707459b3daf39a35f500706edd4))
+
+* Bump python-dateutil from 2.8.0 to 2.8.1
+
+Bumps [python-dateutil](https://github.com/dateutil/dateutil) from 2.8.0 to 2.8.1.
+- [Release notes](https://github.com/dateutil/dateutil/releases)
+- [Changelog](https://github.com/dateutil/dateutil/blob/master/NEWS)
+- [Commits](https://github.com/dateutil/dateutil/compare/2.8.0...2.8.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b9c5011`](https://github.com/portfolioplus/pystockfilter/commit/b9c50118540ae9f6359fd3a53ee2ebe5eb725741))
+
+* Merge pull request #14 from portfolioplus/dependabot/pip/cython-0.29.14
+
+Bump cython from 0.29.13 to 0.29.14 ([`c4ad7b9`](https://github.com/portfolioplus/pystockfilter/commit/c4ad7b90035955daa841020ca3a26f7b6626906b))
+
+* Bump cython from 0.29.13 to 0.29.14
+
+Bumps [cython](https://github.com/cython/cython) from 0.29.13 to 0.29.14.
+- [Release notes](https://github.com/cython/cython/releases)
+- [Changelog](https://github.com/cython/cython/blob/master/CHANGES.rst)
+- [Commits](https://github.com/cython/cython/compare/0.29.13...0.29.14)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b939428`](https://github.com/portfolioplus/pystockfilter/commit/b939428278408f4e874200c4c1e6fa304caf3916))
+
+* Merge pull request #12 from portfolioplus/dependabot/pip/flake8-3.7.9
+
+Bump flake8 from 3.7.8 to 3.7.9 ([`59e50a8`](https://github.com/portfolioplus/pystockfilter/commit/59e50a85c5cf31a010c8ca830688363a8693e9a8))
+
+* Bump flake8 from 3.7.8 to 3.7.9
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.7.8 to 3.7.9.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.7.8...3.7.9)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`eff02eb`](https://github.com/portfolioplus/pystockfilter/commit/eff02eb39081866685d7b42b4b6f2c81d217230f))
+
+* Merge pull request #11 from portfolioplus/dependabot/pip/pytest-5.2.2
+
+Bump pytest from 5.2.1 to 5.2.2 ([`bc8ee8a`](https://github.com/portfolioplus/pystockfilter/commit/bc8ee8a7e7b8234356451cbc307fdc516a99d279))
+
+* Bump pytest from 5.2.1 to 5.2.2
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.2.1 to 5.2.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.2.1...5.2.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`693cd69`](https://github.com/portfolioplus/pystockfilter/commit/693cd6982dbbaa7b20627e639781132fe813bdfe))
+
+* Update rsi_filter.py ([`f1834fa`](https://github.com/portfolioplus/pystockfilter/commit/f1834fa726d822b929f2279592e96a6cf997b088))
+
+* Merge pull request #10 from portfolioplus/dependabot/pip/numpy-1.17.3
+
+Bump numpy from 1.17.2 to 1.17.3 ([`cba0cff`](https://github.com/portfolioplus/pystockfilter/commit/cba0cff012530f4307a37ecb9fff72b0fd73a655))
+
+* Bump numpy from 1.17.2 to 1.17.3
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.17.2 to 1.17.3.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.17.2...v1.17.3)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`5ad65e7`](https://github.com/portfolioplus/pystockfilter/commit/5ad65e7ddc1e6a273327515d40a4a9a0b6715c46))
+
+* Merge pull request #9 from portfolioplus/dependabot/pip/pytest-5.2.1
+
+Bump pytest from 5.2.0 to 5.2.1 ([`e678087`](https://github.com/portfolioplus/pystockfilter/commit/e678087718af966df89bc1dee416b419db09bc98))
+
+* Bump pytest from 5.2.0 to 5.2.1
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.2.0 to 5.2.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.2.0...5.2.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`bcaca03`](https://github.com/portfolioplus/pystockfilter/commit/bcaca0321088129a0d5bf1d9e05e3b0bd19cfea9))
+
+* Merge pull request #6 from portfolioplus/dependabot/pip/numpy-1.17.2
+
+Bump numpy from 1.17.1 to 1.17.2 ([`b5f18f4`](https://github.com/portfolioplus/pystockfilter/commit/b5f18f423f91f9427d7e45562bb45fcf8ede9d3b))
+
+* Bump numpy from 1.17.1 to 1.17.2
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.17.1 to 1.17.2.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.17.1...v1.17.2)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`b6ab0cc`](https://github.com/portfolioplus/pystockfilter/commit/b6ab0cc834d58b4ab31e5fa5fc96681015f0d536))
+
+* Merge pull request #8 from portfolioplus/dependabot/pip/pytest-5.2.0
+
+Bump pytest from 5.0.1 to 5.2.0 ([`1802ca3`](https://github.com/portfolioplus/pystockfilter/commit/1802ca3ffc84004656df75a651c4618926768eb9))
+
+* Bump pytest from 5.0.1 to 5.2.0
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 5.0.1 to 5.2.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/5.0.1...5.2.0)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`899d899`](https://github.com/portfolioplus/pystockfilter/commit/899d8995b58760826115e61599dbcbbbc8a12613))
+
+* Improved  filter status id
+
+Changed id of filter statuses to improve database queries. ([`bdfbdfb`](https://github.com/portfolioplus/pystockfilter/commit/bdfbdfb9e0d1f08a612073083b22c92ffcb1c4ad))
+
+* Improved exception handling. ([`a44ff0d`](https://github.com/portfolioplus/pystockfilter/commit/a44ff0d646ac5fb85ce9b484da827587908010e3))
+
+* Bump pystockdb from 1.0.10 to 1.0.11. ([`5e6400b`](https://github.com/portfolioplus/pystockfilter/commit/5e6400bd43fff223c9a17a1d055c7b5a8a8eb42e))
+
+* Bump pystockdb version from 1.0.9 to 1.0.10. ([`9ded560`](https://github.com/portfolioplus/pystockfilter/commit/9ded560dadd6d41ff7e2ae4526f3dcdf306e7efe))
+
+* Merge pull request #3 from portfolioplus/dependabot/pip/wheel-0.33.6
+
+Bump wheel from 0.33.5 to 0.33.6 ([`2964aff`](https://github.com/portfolioplus/pystockfilter/commit/2964aff9618000cdc320857f95e41c51ef8334f0))
+
+* Bump wheel from 0.33.5 to 0.33.6
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.33.5 to 0.33.6.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.33.5...0.33.6)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`7d5c647`](https://github.com/portfolioplus/pystockfilter/commit/7d5c64703dbb6d706fe980ec7d96204f7ea56521))
+
+* Merge pull request #4 from portfolioplus/dependabot/pip/numpy-1.17.1
+
+Bump numpy from 1.17.0 to 1.17.1 ([`93948e3`](https://github.com/portfolioplus/pystockfilter/commit/93948e3f509237208cf6a63835671ae0d3f176fa))
+
+* Bump numpy from 1.17.0 to 1.17.1
+
+Bumps [numpy](https://github.com/numpy/numpy) from 1.17.0 to 1.17.1.
+- [Release notes](https://github.com/numpy/numpy/releases)
+- [Changelog](https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt)
+- [Commits](https://github.com/numpy/numpy/compare/v1.17.0...v1.17.1)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`245ba8f`](https://github.com/portfolioplus/pystockfilter/commit/245ba8f6703a7a54a53a24009c3a77afb542bad1))
+
+* Bump pystockdb from 1.0.8 to 1.0.9. ([`5d5e227`](https://github.com/portfolioplus/pystockfilter/commit/5d5e22774a4b0057275beb47e4aab5c404f4b03e))
+
+* Fix unit tests. ([`fd869c3`](https://github.com/portfolioplus/pystockfilter/commit/fd869c35b2bb521aed1ae1f8fa150700600baa96))
+
+* Bump pystockdb from 1.0.7 to 1.0.8 ([`6dc7698`](https://github.com/portfolioplus/pystockfilter/commit/6dc7698999bd9547e546c23889535e1fc28deb46))
+
+* Merge pull request #2 from portfolioplus/feature/error_handling
+
+Moved exception handling ([`f4f29fe`](https://github.com/portfolioplus/pystockfilter/commit/f4f29fe8f8a4128617c717a5e1155d78a236ba33))
+
+* Moved exception handling
+
+Status is now set by base class and moved exception handling from filters to build tool. ([`54690cb`](https://github.com/portfolioplus/pystockfilter/commit/54690cb3b28eaedfd54af13a82894713ee1ff68c))
+
+* Merge pull request #1 from portfolioplus/dependabot/pip/wheel-0.33.5
+
+Bump wheel from 0.33.4 to 0.33.5 ([`db2bfdb`](https://github.com/portfolioplus/pystockfilter/commit/db2bfdb5aecc2a12e2713e106dd402caa1667dce))
+
+* Bump wheel from 0.33.4 to 0.33.5
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.33.4 to 0.33.5.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/master/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.33.4...0.33.5)
+
+Signed-off-by: dependabot-preview[bot] <support@dependabot.com> ([`5a823c5`](https://github.com/portfolioplus/pystockfilter/commit/5a823c5f946ef44f575fe37f251a91071337d9f2))
+
+* Fixed filters and requirements
+
+Fixed Piotroski and levermann filter and improved unit tests. ([`ccc4fb3`](https://github.com/portfolioplus/pystockfilter/commit/ccc4fb33d741521d2f977e12ebf1d8db6d9b6c27))
+
+* Merge branch 'feature/initial_work' ([`53cf975`](https://github.com/portfolioplus/pystockfilter/commit/53cf975d50b190e4a1d9ca2e985e36ec7feb1370))
+
+* Fixed price target and levermann filter. ([`97bb5ac`](https://github.com/portfolioplus/pystockfilter/commit/97bb5acba7fe0906826ecc7de851c631189c9fcd))
+
+* Fixed filter implementation. ([`e753e08`](https://github.com/portfolioplus/pystockfilter/commit/e753e08927aff8c3a4aa08d14b9bc74f93ae8693))
+
+* initial work
+
+build filter part 1 ([`07eb594`](https://github.com/portfolioplus/pystockfilter/commit/07eb59439b161ff0acc50be67c2b0fd223d2c598))

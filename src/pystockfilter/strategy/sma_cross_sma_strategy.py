@@ -31,5 +31,5 @@ class SmaCrossSmaStrategy(SmaCrossCloseStrategy):
             "para_sma_short": range(5, 30, 1), 
             "para_sma_long": range(30, 100, 1),
             "constraint": constraint,
-            "maximize": "Equity Final [$]",
+            
         }

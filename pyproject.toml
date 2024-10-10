@@ -17,6 +17,7 @@ beautifulsoup4 = "^4.12.3"
 yfinance = "^0.2.43"
 pytickersymbols = "^1.15.0"
 joblib = "^1.4.2"
+scikit-optimize = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
 wheel = "^0.41.3"
@@ -32,3 +33,11 @@ pytest-benchmark = "^4.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+  "src/pystockfilter/__init__.py:__version__",
+  "pyproject.toml:version"
+]
+commit_message = "chore(release): version ${version}"
+patch_without_tag = true

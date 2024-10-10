@@ -39,5 +39,5 @@ class SmaCrossCloseStrategy(BaseStrategy):
         return {
             "para_sma_short": range(5, 50, 1), 
             "constraint": constraint,
-            "maximize": "Equity Final [$]",
+            
         }

@@ -33,5 +33,5 @@ class EmaCrossEmaStrategy(EmaCrossCloseStrategy):
             "para_ema_short": range(2, 50, 1),
             "para_ema_long": range(10, 150, 1),
             "constraint": constraint,
-            "maximize": "Equity Final [$]",
+            
         }

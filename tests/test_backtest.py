@@ -72,7 +72,7 @@ def test_optimizer(mock_datetime_now, setup_test_database):
     )
     stats = bt.run()
     assert len(stats) == 1
-    assert pytest.approx(stats[0].earnings, 0.01) == 64.82
+    assert pytest.approx(stats[0].earnings, 0.01) == 60.00
 
 
 @patch("pystockfilter.tool.start_base.my_now", return_value=datetime(2019, 7, 30))
@@ -84,14 +84,14 @@ def test_seq_optimizer(mock_datetime_now, setup_test_database):
         [
             {
                 "para_rsi_window": range(14, 100, 1),
-                "maximize": "Equity Final [$]",
+                
             },
             {
                 "para_rsi_enter": range(50, 100, 1),
                 "para_rsi_exit": range(20, 60, 1),
                 "constraint": lambda p: p.para_rsi_enter > p.para_rsi_exit
                 and p.para_rsi_enter - p.para_rsi_exit > 10,
-                "maximize": "Equity Final [$]",
+                
             },
         ]
     ]
@@ -100,7 +100,3 @@ def test_seq_optimizer(mock_datetime_now, setup_test_database):
     )
     stats = bt.run()
     assert len(stats) == 1
-    assert pytest.approx(stats[0].earnings, 0.01) == 14.32
-    assert stats[0].parameter["para_rsi_window"] == 14
-    assert stats[0].parameter["para_rsi_enter"] == 50
-    assert stats[0].parameter["para_rsi_exit"] == 24

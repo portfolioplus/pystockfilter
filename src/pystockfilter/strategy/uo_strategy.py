@@ -75,5 +75,5 @@ class UltimateStrategy(BaseStrategy):
            #"para_uo_upper": range(20, 100, 1),
            #"para_uo_lower": range(-30, 50, 1),  
             "constraint": constraint_uo,
-            "maximize": "Equity Final [$]",
+            
         }

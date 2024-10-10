@@ -31,7 +31,7 @@ parameters = [
                 p.para_uo_long > p.para_uo_medium > p.para_uo_short
             ) and (p.para_uo_long - p.para_uo_medium) > 5
               and (p.para_uo_medium - p.para_uo_short) > 3,
-            "maximize": "Equity Final [$]",
+            
         }, # Group 2: UO Strategy upper and lower threshold values with constraints
         {
             "para_uo_upper": range(20, 100, 1),
@@ -39,7 +39,7 @@ parameters = [
             "constraint": lambda p: (
                 p.para_uo_upper > p.para_uo_lower
             ) and (p.para_uo_upper - p.para_uo_lower) > 10,
-            "maximize": "Equity Final [$]",
+            
         }
     ]
 ]

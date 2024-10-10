@@ -9,6 +9,11 @@ from pystockfilter.strategy.ema_cross_sma_strategy import EmaCrossSmaStrategy
 from pystockfilter.strategy.rsi_strategy import RSIStrategy
 from pystockfilter.strategy.sma_cross_sma_strategy import SmaCrossSmaStrategy
 from pystockfilter.strategy.sma_cross_close_strategy import SmaCrossCloseStrategy
+from pystockfilter.strategy.atr_strategy import ATRStrategy
+from pystockfilter.strategy.macd_strategy import MACDStrategy
+from pystockfilter.strategy.moving_average_rsi_strategy import MovingAverageRSIStrategy
+from pystockfilter.strategy.bollinger_volume_strategy import BollingerVolumeStrategy
+
 class StrategyName(Enum):
     ECCS = "eccs"
     ECES = "eces"
@@ -18,6 +23,10 @@ class StrategyName(Enum):
     SCSS = "scss"
     UECCS = "ueccs"
     UECES = "ueces"
+    ATR = "atr"
+    MACD = "macd"
+    MARSI = "marsi"
+    BVS = "bvs"
     UO = "uo"
 
 def strategy_from_name(strategy_name: StrategyName) -> BaseStrategy:
@@ -31,6 +40,10 @@ def strategy_from_name(strategy_name: StrategyName) -> BaseStrategy:
         StrategyName.UECCS: UltimateEmaCrossCloseStrategy,
         StrategyName.UECES: UltimateEmaCrossEmaStrategy,
         StrategyName.UO: UltimateStrategy,
+        StrategyName.ATR: ATRStrategy,
+        StrategyName.MACD: MACDStrategy,
+        StrategyName.MARSI: MovingAverageRSIStrategy,
+        StrategyName.BVS: BollingerVolumeStrategy,
     }
     strategy = strategy_map.get(strategy_name)
     assert strategy is not None, f"Strategy {strategy_name} not found"

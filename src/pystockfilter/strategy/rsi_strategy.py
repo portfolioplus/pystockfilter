@@ -49,5 +49,5 @@ class RSIStrategy(BaseStrategy):
             "para_rsi_enter": range(10, 50, 1),
             "para_rsi_exit": range(50, 90, 1),
             "constraint": constraint,
-            "maximize": "Equity Final [$]",
+            
         }

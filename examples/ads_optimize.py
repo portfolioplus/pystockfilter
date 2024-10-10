@@ -18,7 +18,7 @@ parameters = [
         "para_ema_long": range(10, 150),              # Long EMA range to optimize
         "constraint": lambda p: p.para_ema_long > p.para_ema_short 
                               and (p.para_ema_long - p.para_ema_short) > 7,
-        "maximize": "Equity Final [$]",               # Optimize for final equity value
+                       # Optimize for final equity value
     }
 ]
 

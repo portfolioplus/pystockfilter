@@ -231,7 +231,27 @@ def test_algo_function(name, algo_func, parameters, data, expected_ema):
             {"para_rsi_window": 3, "para_rsi_enter": 5, "para_rsi_exit": 22},
             "AAPL",
             -9.06,
-        ),
+        ),(
+            strategy_from_name(StrategyName.ATR),
+            {"para_atr_window": 24, "para_atr_enter": 0.5, "para_atr_exit": 0.2},
+            "AAPL",
+            20.64,
+        ),(
+            strategy_from_name(StrategyName.MACD),
+            {"para_macd_fast": 12, "para_macd_slow": 26, "para_macd_signal": 9},
+            "AAPL",
+            10.36,
+        ),(  
+            strategy_from_name(StrategyName.BVS),
+            {"para_bb_window": 7, "para_bb_std_dev": 1.6, "para_volume_window": 7, "para_volume_multiplier": 1.01},
+            "AAPL",
+            -25.26,
+        ),(  
+            strategy_from_name(StrategyName.MARSI),
+            {"para_ma_short": 7, "para_ma_long": 21, "para_rsi_window": 14, "para_rsi_threshold": 50},
+            "AAPL",
+            6.40,
+        )
         # Add more combinations of strategies and expected results here
     ],
 )

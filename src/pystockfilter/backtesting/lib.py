@@ -90,6 +90,14 @@ def cross(series1: Sequence, series2: Sequence) -> bool:
     return crossover(series1, series2) or crossover(series2, series1)
 
 
+def gt(series1: Sequence, series2: Sequence) -> bool:
+    """
+    Return `True` if `series1` is greater than `series2`.
+
+        >>> gt(self.data.Close, self.sma)
+        True
+    """
+    return series1[-1] > series2[-1]
 def crossover(series1: Sequence, series2: Sequence) -> bool:
     """
     Return `True` if `series1` just crossed over (above)

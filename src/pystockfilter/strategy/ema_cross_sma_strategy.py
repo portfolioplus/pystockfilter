@@ -31,5 +31,5 @@ class EmaCrossSmaStrategy(EmaCrossCloseStrategy):
             "para_ema": range(2, 50, 1),  # Realistic range for short EMA
             "para_sma": range(10, 150, 1), # Realistic range for SMA
             "constraint": constraint,
-            "maximize": "Equity Final [$]",
+            
         }

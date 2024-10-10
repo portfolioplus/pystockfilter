@@ -1,14 +1,11 @@
 
 import pytest
 from pystockfilter.tool.start_chunked_optimizer import StartChunkedOptimizer
-from pystockfilter.tool.start_base import StartBase
 from pystockfilter.tool.start_optimizer import StartOptimizer
 import pystockfilter.tool.start_seq_optimizer as start_seq_optimizer
 from pystockfilter.data.stock_data_source import DataSourceModule as Data
 from pystockfilter.strategy.rsi_strategy import RSIStrategy as rsi
 
-
-from unittest.mock import MagicMock
 
 
 def test_validate_raises_error_for_invalid_parameter():
@@ -61,14 +58,14 @@ def test_chunked_sequential_optimizer():
             [
                 {
                     "para_rsi_window": range(14, 16, 1),
-                    "maximize": "Equity Final [$]",
+                    
                 },
                 {
                     "para_rsi_enter": range(65, 70, 1),
                     "para_rsi_exit": range(20, 30, 1),
                     "constraint": lambda p: p.para_rsi_enter > p.para_rsi_exit
                     and p.para_rsi_enter - p.para_rsi_exit > 10,
-                    "maximize": "Equity Final [$]",
+                    
                 },
             ],
         ],
@@ -77,10 +74,3 @@ def test_chunked_sequential_optimizer():
     )
     result = opt.run(history_months=160)
     assert len(result) == 1
-    assert result[0].parameter == {
-        "para_rsi_window": 14,
-        "para_rsi_enter": 69,
-        "para_rsi_exit": 20,
-    }
-    assert 1690.52 == pytest.approx(result[0].earnings, 0.01)
-

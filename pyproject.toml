@@ -35,9 +35,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
-version_variable = [
-  "src/pystockfilter/__init__.py:__version__",
-  "pyproject.toml:version"
-]
+version_variable = 'pyproject.toml:version,src/pystockfilter/__init__.py:__version__'
 commit_message = "chore(release): version ${version}"
 patch_without_tag = true

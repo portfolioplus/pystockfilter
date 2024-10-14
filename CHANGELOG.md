@@ -1,7 +1,26 @@
 # CHANGELOG
 
 
+## v2.1.1 (2024-10-14)
+
+### Chores
+
+* chore: Update versioning configuration ([`2f8541f`](https://github.com/portfolioplus/pystockfilter/commit/2f8541f0b7199112194abda6898c850de82a1d9e))
+
+### Fixes
+
+* fix: fixed release ([`ae14e2a`](https://github.com/portfolioplus/pystockfilter/commit/ae14e2a008891b5eaae4c64a2939d3e8c8a6ddad))
+
+### Refactoring
+
+* refactor: Update python-semantic-release to v9.10.1 ([`1f4e6c4`](https://github.com/portfolioplus/pystockfilter/commit/1f4e6c45c0afdc3482c12c68401159a58c2c2660))
+
+
 ## v2.1.0 (2024-10-11)
+
+### Chores
+
+* chore(release): version $2.1.0 ([`96f966a`](https://github.com/portfolioplus/pystockfilter/commit/96f966a631981dbd723ec404b32cc1c2957372ab))
 
 ### Features
 

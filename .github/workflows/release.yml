@@ -47,21 +47,17 @@ jobs:
         uses: python-semantic-release/python-semantic-release@v9.10.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build Wheel Package
-        run: poetry build -f wheel
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         if: steps.release.outputs.released == 'true'
         with:
           password: ${{ secrets.PYPI_TOKEN_PP }}
-
       - name: Publish package distributions to GitHub Releases
         uses: python-semantic-release/upload-to-gh-release@main
         if: steps.release.outputs.released == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           assets: dist/*.whl
-
   coveralls_finish:
     needs: release
     runs-on: ubuntu-latest

@@ -58,12 +58,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           assets: dist/*.whl
-  coveralls_finish:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Complete Coveralls
+      - name: Upload Coverage to Coveralls
         uses: AndreMiras/coveralls-python-action@develop
         with:
-          parallel-finished: true
-          debug: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel: true

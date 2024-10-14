@@ -25,6 +25,8 @@ PyStockFilter includes several popular technical indicators, which can be used o
 - **Exponential Moving Average (EMA)**
 - **Relative Strength Index (RSI)**
 - **Ultimate Oscillator (UO)**
+- **Moving Average Convergence Divergence (MACD)**
+- **Bollinger Bands (BB)**
 
 For custom indicators, refer to the examples in the `src/pystockfilter/strategy` directory.
 

@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
+
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from pystockfilter.data import StockDataSource
 from pystockfilter.strategy.base_strategy import BaseStrategy
 from pystockfilter.tool.start_base import StartBase

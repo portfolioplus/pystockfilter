@@ -64,8 +64,8 @@ class MACDStrategy(BaseStrategy):
             )
 
         return {
-            "para_macd_fast": range(5, 20, 1),  
-            "para_macd_slow": range(15, 40, 1), 
+            "para_macd_fast": range(5, 20, 1),
+            "para_macd_slow": range(15, 40, 1),
             "para_macd_signal": range(5, 20, 1),
             "constraint": constraint,
         }

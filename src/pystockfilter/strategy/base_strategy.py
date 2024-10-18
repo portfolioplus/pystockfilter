@@ -63,11 +63,16 @@ class BaseStrategy(Strategy):
             # only take take tow rows at the beginning and two last rows of df to reduce hash caluclation time
             # Directly select the first two and last two rows without appending or concatenation
             if isinstance(args[0], pd.Series):
-                sample_data = args[0].iloc[:2].values.tobytes() + args[0].iloc[-2:].values.tobytes()
+                sample_data = (
+                    args[0].iloc[:2].values.tobytes()
+                    + args[0].iloc[-2:].values.tobytes()
+                )
                 data_hash = zlib.crc32(sample_data)
             elif isinstance(args[0], pd.DataFrame):
                 close = args[0].get("Close", args[0].iloc[:, :1])
-                sample_data = close.iloc[:2].values.tobytes() + close.iloc[-2:].values.tobytes()
+                sample_data = (
+                    close.iloc[:2].values.tobytes() + close.iloc[-2:].values.tobytes()
+                )
                 data_hash = zlib.crc32(sample_data)
             else:
                 # Use a random UUID for non-pandas arguments

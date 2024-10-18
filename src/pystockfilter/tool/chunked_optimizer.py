@@ -1,8 +1,17 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
+
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from datetime import datetime
 from pystockfilter.backtesting import Backtest
 
 from pystockfilter.strategy.base_strategy import BaseStrategy
-from pystockfilter.tool.start_base import StartBase, BacktestResult
+from pystockfilter.tool.start_base import StartBase
+from pystockfilter.tool.result import BacktestResult
 from typing import Type
 
 from pystockfilter.tool.start_optimizer import StartOptimizer
@@ -63,7 +72,7 @@ class ChunkedOptimizer:
         # Initialize optimizer with None as data source and run optimization
         optimizer: StartBase = optimizer_class(None, None, None, None)
         result = optimizer.run_implementation(strategy, "", chunk, commission, cash, optimizer_arg)
-        return (result.earnings, result.parameter)
+        return (result.sqn, result.parameter)
 
     def optimize(self) -> dict:
         start_time = datetime.now()
@@ -72,9 +81,9 @@ class ChunkedOptimizer:
 
         for chunk in all_chunks:
             try:
-                earnings, best_params = self._optimize_strategy(chunk)
+                sqn, best_params = self._optimize_strategy(chunk)
                 results.append(best_params)
-                logger.debug(f"Chunked optimization: {best_params} - {earnings}")
+                logger.debug(f"Chunked optimization: {best_params} - {sqn}")
             except ValueError as e:
                 logger.warning(f"Error in chunked optimization. Data chunk skipped. Error: {e}")
 

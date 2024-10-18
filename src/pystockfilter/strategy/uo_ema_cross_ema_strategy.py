@@ -19,10 +19,22 @@ class UltimateEmaCrossEmaStrategy(UltimateEmaCrossCloseStrategy):
 
     def init(self):
         super().init()
-        self.ema_long = self.I(
-            EmaCrossCloseStrategy.algo, self.data.Close, self.para_ema_long, overlay=True, name=f"EMA({self.para_ema_long})"
-        )
+        self.ema_long = None
+        if self.para_ema_long > 0:
+            self.ema_long = self.I(
+                EmaCrossCloseStrategy.algo,
+                self.data.Close,
+                self.para_ema_long,
+                overlay=True,
+                name=f"EMA({self.para_ema_long})",
+            )
         super().setup(
-            buy_signal=lambda: crossover(self.ema_long, self.ema_short)  and self.uo > self.uo_upper,
-            sell_signal=lambda: cross(self.ema_short, self.ema_long) and self.uo_lower > self.uo,
+            buy_signal=lambda: (
+                self.para_ema_long == 0 or crossover(self.ema_long, self.ema_short)
+            )
+            and self.uo > self.uo_upper,
+            sell_signal=lambda: (
+                self.para_ema_long == 0 or cross(self.ema_short, self.ema_long)
+            )
+            and self.uo_lower > self.uo,
         )

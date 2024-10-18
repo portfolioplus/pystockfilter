@@ -1,9 +1,18 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
+
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from typing import Type
 import pandas as pd
 from pystockfilter.data import StockDataSource
 from pystockfilter.strategy.base_strategy import BaseStrategy
 from pystockfilter.tool.chunked_optimizer import ChunkedOptimizer
-from pystockfilter.tool.start_base import BacktestResult, StartBase
+from pystockfilter.tool.result import BacktestResult
+from pystockfilter.tool.start_base import StartBase
 
 
 class StartChunkedOptimizer(StartBase):

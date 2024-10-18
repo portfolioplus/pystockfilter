@@ -57,20 +57,27 @@ class BollingerVolumeStrategy(BaseStrategy):
             name=f"Bollinger Bands (Window {self.para_bb_window}, Std Dev {self.para_bb_std_dev})",
             plot=plot,
         )
-        # Volume and Volume Moving Average
-        self.volume, self.volume_ma = self.I(
-            lambda x: (x[0], x[1]),
-            (vol, vol_ma),
-            name=f"Volume & Volume MA({self.para_volume_window})",
-            plot=plot,
-        )
+        if self.para_volume_window > 0:
+            # Volume and Volume Moving Average
+            self.volume, self.volume_ma = self.I(
+                lambda x: (x[0], x[1]),
+                (vol, vol_ma),
+                name=f"Volume & Volume MA({self.para_volume_window})",
+                plot=plot,
+            )
 
         # Set up the buy and sell signals based on Bollinger Bands reversal and volume confirmation
         super().setup(
             buy_signal=lambda: crossover(self.close, self.bb_lower)
-            and (self.volume > self.volume_ma * self.para_volume_multiplier),
+            and (
+                self.para_volume_window == 0
+                or (self.volume > self.volume_ma * self.para_volume_multiplier)
+            ),
             sell_signal=lambda: crossover(self.close, self.bb_upper)
-            and (self.volume > self.volume_ma * self.para_volume_multiplier),
+            and (
+                self.para_volume_window == 0
+                or (self.volume > self.volume_ma * self.para_volume_multiplier)
+            ),
         )
 
     @staticmethod

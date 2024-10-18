@@ -47,9 +47,9 @@ class MovingAverageRSIStrategy(BaseStrategy):
         # Set up the buy and sell signals based on MA crossover and RSI confirmation
         super().setup(
             buy_signal=lambda: crossover(self.short_ma, self.long_ma)
-            and self.rsi[-1] > self.para_rsi_threshold,
+            and (self.para_rsi_window == 0 or (self.rsi[-1] > self.para_rsi_threshold)),
             sell_signal=lambda: crossover(self.long_ma, self.short_ma)
-            or self.rsi[-1] < self.para_rsi_threshold,
+            or (self.para_rsi_window == 0 and (self.rsi[-1] < self.para_rsi_threshold)),
         )
 
     @staticmethod

@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
+
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from datetime import datetime
 from types import SimpleNamespace
 from skopt import gp_minimize
@@ -6,7 +14,8 @@ from skopt.utils import use_named_args
 from typing import Dict
 from pystockfilter.data import StockDataSource
 from pystockfilter.strategy.base_strategy import BaseStrategy
-from pystockfilter.tool.start_base import BacktestResult, StartBase
+from pystockfilter.tool.result import BacktestResult, BacktestResultList
+from pystockfilter.tool.start_base import StartBase
 from pystockfilter import logger
 import multiprocessing as mp
 
@@ -112,12 +121,12 @@ class StartBatchOptimizer(StartBase):
         result = self.run_implementation(strategy, symbol, df, commission, cash, parameter)
         return result.sqn
 
-    def run(self, commission=0.002, cash=10000.0, history_months=6) -> list[BacktestResult]:
+    def run(self, commission=0.002, cash=10000.0, history_months=6) -> BacktestResultList:
         """Runs the optimizer for each strategy and returns a list of backtest results."""
         if self.parameters and len(self.strategies) != len(self.parameters):
             raise RuntimeError("Mismatch between strategies and parameters.")
 
-        backtest_results: list[BacktestResult] = []
+        backtest_results = BacktestResultList()
 
         for idx, strategy in enumerate(self.strategies):
             logger.info(f"Starting optimization for strategy {strategy.__name__}")

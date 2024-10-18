@@ -9,6 +9,8 @@
 import logging
 import os
 
+import numpy as np
+
 
 class BaseHelper:
     """
@@ -56,3 +58,17 @@ class BaseHelper:
         logger.setLevel(logging.INFO)
         logger.debug("Logging Setup successful")
         return logger
+
+    @staticmethod
+    def convert_to_native(obj):
+        """
+        Convert a numpy type, numpy array, or tuple of numpy types to its closest native Python type.
+        """
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()  # Convert numpy array to a list
+        elif isinstance(obj, np.generic):
+            return obj.item()  # Convert numpy scalar to a native Python scalar
+        elif isinstance(obj, tuple):
+            return tuple(BaseHelper.convert_to_native(item) for item in obj)  # Recursively convert each item in the tuple
+        else:
+            return obj  # If it's not a numpy type or a tuple, return it as is

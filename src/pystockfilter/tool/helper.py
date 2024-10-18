@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
+
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from datetime import datetime
 from typing import Iterator
 

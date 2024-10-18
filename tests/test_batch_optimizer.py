@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 from unittest.mock import MagicMock, patch
 from pystockfilter.backtesting import Backtest, Strategy
-from pystockfilter.tool.start_base import BacktestResult, Signals
+from pystockfilter.tool.result import BacktestResult, Signals
 from pystockfilter.tool.start_batch_optimizer import StartBatchOptimizer
 import numpy as np
 

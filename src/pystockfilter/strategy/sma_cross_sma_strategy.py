@@ -16,7 +16,13 @@ class SmaCrossSmaStrategy(SmaCrossCloseStrategy):
 
     def init(self):
         super().init()
-        self.sma_long = self.I(SmaCrossSmaStrategy.algo, self.data.Close, self.para_sma_long, overlay=True, name=f"SMA({self.para_sma_long})")
+        self.sma_long = self.I(
+            SmaCrossSmaStrategy.algo,
+            self.data.Close,
+            self.para_sma_long,
+            overlay=True,
+            name=f"SMA({self.para_sma_long})",
+        )
         self.setup(
             buy_signal=lambda: crossover(self.sma_long, self.sma_short),
             sell_signal=lambda: cross(self.sma_short, self.sma_long),
@@ -25,11 +31,13 @@ class SmaCrossSmaStrategy(SmaCrossCloseStrategy):
     @staticmethod
     def get_optimizer_parameters() -> dict:
         def constraint(p):
-            return p.para_sma_long > p.para_sma_short and (p.para_sma_long - p.para_sma_short) > 10
+            return (
+                p.para_sma_long > p.para_sma_short
+                and (p.para_sma_long - p.para_sma_short) > 10
+            )
 
         return {
-            "para_sma_short": range(5, 30, 1), 
+            "para_sma_short": range(5, 30, 1),
             "para_sma_long": range(30, 100, 1),
             "constraint": constraint,
-            
         }

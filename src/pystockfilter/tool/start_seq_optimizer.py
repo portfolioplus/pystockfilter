@@ -1,10 +1,18 @@
+# -*- coding: utf-8 -*-
+""" pystockfilter
 
+  Copyright 2024 Slash Gordon
+
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file.
+"""
 from datetime import datetime
 from pystockfilter.backtesting import Backtest
 import pandas as pd
 from pystockfilter.data import StockDataSource
 from pystockfilter.strategy.base_strategy import BaseStrategy
-from pystockfilter.tool.start_base import BacktestResult, StartBase
+from pystockfilter.tool.result import BacktestResult
+from pystockfilter.tool.start_base import StartBase
 
 
 class StartSequentialOptimizer(StartBase):
@@ -22,9 +30,9 @@ class StartSequentialOptimizer(StartBase):
         best_parameters:dict ={}
         start_time = datetime.now()
         for parameter in parameters:
-            if previous_result is not None:
+            if len(best_parameters) > 0:
                 # Use parameters from the previous optimization result
-                strategy.set_parameters(strategy, previous_result.parameter)
+                strategy.set_parameters(strategy, best_parameters)
             # Initialize and run backtest
             bt = Backtest(df, strategy, commission=commission, cash=cash, trade_on_close=True, exclusive_orders=True)
             res = bt.optimize(**parameter)

@@ -20,7 +20,7 @@ joblib = "^1.4.2"
 scikit-optimize = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
-wheel = "^0.41.3"
+wheel = ">=0.41.3,<0.45.0"
 pytest = ">=7.4.3,<9.0.0"
 pytest-cov = "^4.1.0"
 flake8 = "^6.1.0"

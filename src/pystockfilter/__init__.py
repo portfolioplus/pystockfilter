@@ -1,4 +1,4 @@
-__version__ = "2.1.3"
+__version__ = "2.2.0"
 import os
 import sys  
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))

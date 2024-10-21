@@ -1,7 +1,204 @@
 # CHANGELOG
 
 
+## v2.2.0 (2024-10-21)
+
+### Chores
+
+* chore(deps): bump python-dateutil from 2.8.2 to 2.9.0.post0
+
+Bumps [python-dateutil](https://github.com/dateutil/dateutil) from 2.8.2 to 2.9.0.post0.
+- [Release notes](https://github.com/dateutil/dateutil/releases)
+- [Changelog](https://github.com/dateutil/dateutil/blob/master/NEWS)
+- [Commits](https://github.com/dateutil/dateutil/compare/2.8.2...2.9.0.post0)
+
+---
+updated-dependencies:
+- dependency-name: python-dateutil
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`128c4ee`](https://github.com/portfolioplus/pystockfilter/commit/128c4ee7d0895b82fdbb629400dabda292006fa8))
+
+* chore(deps-dev): bump wheel from 0.41.3 to 0.44.0
+
+Bumps [wheel](https://github.com/pypa/wheel) from 0.41.3 to 0.44.0.
+- [Release notes](https://github.com/pypa/wheel/releases)
+- [Changelog](https://github.com/pypa/wheel/blob/main/docs/news.rst)
+- [Commits](https://github.com/pypa/wheel/compare/0.41.3...0.44.0)
+
+---
+updated-dependencies:
+- dependency-name: wheel
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`ebd8e69`](https://github.com/portfolioplus/pystockfilter/commit/ebd8e6958083b303b2c832e08890e5e1057e87bb))
+
+* chore(deps): bump tornado from 6.3.3 to 6.4.1
+
+Bumps [tornado](https://github.com/tornadoweb/tornado) from 6.3.3 to 6.4.1.
+- [Changelog](https://github.com/tornadoweb/tornado/blob/master/docs/releases.rst)
+- [Commits](https://github.com/tornadoweb/tornado/compare/v6.3.3...v6.4.1)
+
+---
+updated-dependencies:
+- dependency-name: tornado
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`8b147a2`](https://github.com/portfolioplus/pystockfilter/commit/8b147a21d5eb3bddb05fa017d412f5694c68480e))
+
+* chore(deps): bump certifi from 2023.11.17 to 2024.7.4
+
+Bumps [certifi](https://github.com/certifi/python-certifi) from 2023.11.17 to 2024.7.4.
+- [Commits](https://github.com/certifi/python-certifi/compare/2023.11.17...2024.07.04)
+
+---
+updated-dependencies:
+- dependency-name: certifi
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`dfb05e7`](https://github.com/portfolioplus/pystockfilter/commit/dfb05e7d9eef7a1795a8bce386a2229cb0dc6e86))
+
+* chore(deps): bump urllib3 from 2.1.0 to 2.2.2
+
+Bumps [urllib3](https://github.com/urllib3/urllib3) from 2.1.0 to 2.2.2.
+- [Release notes](https://github.com/urllib3/urllib3/releases)
+- [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+- [Commits](https://github.com/urllib3/urllib3/compare/2.1.0...2.2.2)
+
+---
+updated-dependencies:
+- dependency-name: urllib3
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`24137a2`](https://github.com/portfolioplus/pystockfilter/commit/24137a2f9e77cadecf5746bd356504396a502342))
+
+* chore(deps): bump requests from 2.31.0 to 2.32.2
+
+Bumps [requests](https://github.com/psf/requests) from 2.31.0 to 2.32.2.
+- [Release notes](https://github.com/psf/requests/releases)
+- [Changelog](https://github.com/psf/requests/blob/main/HISTORY.md)
+- [Commits](https://github.com/psf/requests/compare/v2.31.0...v2.32.2)
+
+---
+updated-dependencies:
+- dependency-name: requests
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`a266fca`](https://github.com/portfolioplus/pystockfilter/commit/a266fca7e936d6f6a5ec656e99ffc63fc858a5d4))
+
+* chore(deps): bump jinja2 from 3.1.2 to 3.1.4
+
+Bumps [jinja2](https://github.com/pallets/jinja) from 3.1.2 to 3.1.4.
+- [Release notes](https://github.com/pallets/jinja/releases)
+- [Changelog](https://github.com/pallets/jinja/blob/main/CHANGES.rst)
+- [Commits](https://github.com/pallets/jinja/compare/3.1.2...3.1.4)
+
+---
+updated-dependencies:
+- dependency-name: jinja2
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`53d5553`](https://github.com/portfolioplus/pystockfilter/commit/53d555310d398330ba6095ccf994b22c77e74055))
+
+* chore(deps): bump idna from 3.6 to 3.7
+
+Bumps [idna](https://github.com/kjd/idna) from 3.6 to 3.7.
+- [Release notes](https://github.com/kjd/idna/releases)
+- [Changelog](https://github.com/kjd/idna/blob/master/HISTORY.rst)
+- [Commits](https://github.com/kjd/idna/compare/v3.6...v3.7)
+
+---
+updated-dependencies:
+- dependency-name: idna
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`43b1081`](https://github.com/portfolioplus/pystockfilter/commit/43b10815004fff571d0403116db92399cc8427d8))
+
+* chore(deps): bump pillow from 10.1.0 to 10.3.0
+
+Bumps [pillow](https://github.com/python-pillow/Pillow) from 10.1.0 to 10.3.0.
+- [Release notes](https://github.com/python-pillow/Pillow/releases)
+- [Changelog](https://github.com/python-pillow/Pillow/blob/main/CHANGES.rst)
+- [Commits](https://github.com/python-pillow/Pillow/compare/10.1.0...10.3.0)
+
+---
+updated-dependencies:
+- dependency-name: pillow
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`349402a`](https://github.com/portfolioplus/pystockfilter/commit/349402abd997c3f59bd8ea7bed850d0e4512da0a))
+
+* chore(deps): bump pystockdb from 1.2.0 to 1.2.1
+
+Bumps [pystockdb](https://github.com/portfolioplus/pystockdb) from 1.2.0 to 1.2.1.
+- [Release notes](https://github.com/portfolioplus/pystockdb/releases)
+- [Changelog](https://github.com/portfolioplus/pystockdb/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/portfolioplus/pystockdb/compare/v1.2.0...v1.2.1)
+
+---
+updated-dependencies:
+- dependency-name: pystockdb
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`52d0edc`](https://github.com/portfolioplus/pystockfilter/commit/52d0edcb99bb1ce95a6d2e81054fb5d1cd8a5e1a))
+
+* chore(deps-dev): bump pytest from 7.4.3 to 8.3.3
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 7.4.3 to 8.3.3.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/7.4.3...8.3.3)
+
+---
+updated-dependencies:
+- dependency-name: pytest
+  dependency-type: direct:development
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`6664a27`](https://github.com/portfolioplus/pystockfilter/commit/6664a27ed8ae38925071fcf2c3d0e2e01ebf5be4))
+
+* chore(deps): bump yfinance from 0.2.43 to 0.2.44
+
+Bumps [yfinance](https://github.com/ranaroussi/yfinance) from 0.2.43 to 0.2.44.
+- [Release notes](https://github.com/ranaroussi/yfinance/releases)
+- [Changelog](https://github.com/ranaroussi/yfinance/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/ranaroussi/yfinance/compare/0.2.43...0.2.44)
+
+---
+updated-dependencies:
+- dependency-name: yfinance
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`82eb34f`](https://github.com/portfolioplus/pystockfilter/commit/82eb34fbbc37372d6188b119d2fcf2444a8529f5))
+
+### Features
+
+* feat: added some improvements ([`fb2073e`](https://github.com/portfolioplus/pystockfilter/commit/fb2073e98e7d9d57e270d3087e407b5f436ff984))
+
+
 ## v2.1.3 (2024-10-14)
+
+### Chores
+
+* chore(release): 2.1.3
+
+Automatically generated by python-semantic-release ([`864b3d6`](https://github.com/portfolioplus/pystockfilter/commit/864b3d6dcd06e939c3df5ed69bfda88d106ca61f))
 
 ### Fixes
 

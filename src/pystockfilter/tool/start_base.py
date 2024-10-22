@@ -57,7 +57,10 @@ class StartBase:
                     strategy, symbol, df, commission, cash, parameter
                 )
                 elapsed_time = datetime.now() - start_time
-                if isinstance(
+                if result is None:
+                    logger.warning(f"Empty result for {symbol}")
+                    continue
+                elif isinstance(
                     result, tuple
                 ):  # if the result is a tuple, we have an overall result and a last result
                     last_result, overall_result = result

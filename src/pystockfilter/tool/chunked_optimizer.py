@@ -17,6 +17,7 @@ from typing import Type
 from pystockfilter.tool.start_optimizer import StartOptimizer
 from pystockfilter import logger
 
+
 class ChunkedOptimizer:
     def __init__(
         self,
@@ -28,7 +29,7 @@ class ChunkedOptimizer:
         commission=0.002,
         cash=10000,
         exclusive_orders=True,
-        trade_on_close=True,        
+        trade_on_close=True,
         optimizer_class: Type[StartBase] = StartOptimizer,
     ):
         self.data = data
@@ -40,7 +41,7 @@ class ChunkedOptimizer:
         self.commission = commission
         self.exclusive_orders = exclusive_orders
         self.trade_on_close = trade_on_close
-        self.optimizer_class = optimizer_class 
+        self.optimizer_class = optimizer_class
 
     def _chunks(self, data):
         for i in range(0, len(data), self.data_chunk_size):
@@ -71,7 +72,9 @@ class ChunkedOptimizer:
 
         # Initialize optimizer with None as data source and run optimization
         optimizer: StartBase = optimizer_class(None, None, None, None)
-        result = optimizer.run_implementation(strategy, "", chunk, commission, cash, optimizer_arg)
+        result = optimizer.run_implementation(
+            strategy, "", chunk, commission, cash, optimizer_arg
+        )
         return (result.sqn, result.parameter)
 
     def optimize(self) -> dict:
@@ -85,7 +88,9 @@ class ChunkedOptimizer:
                 results.append(best_params)
                 logger.debug(f"Chunked optimization: {best_params} - {sqn}")
             except ValueError as e:
-                logger.warning(f"Error in chunked optimization. Data chunk skipped. Error: {e}")
+                logger.warning(
+                    f"Error in chunked optimization. Data chunk skipped. Error: {e}"
+                )
 
         # The rest of the method remains the same
         best_result = None
@@ -99,12 +104,15 @@ class ChunkedOptimizer:
                 exclusive_orders=self.exclusive_orders,
                 trade_on_close=self.trade_on_close,
             )
-            
+
             stats = bt.run()
-            result = BacktestResult.from_stats_pd(symbol=self.symbol, stats=stats, bt=bt, time_taken=0.0)
+            result = BacktestResult.from_stats_pd(
+                symbol=self.symbol, stats=stats, bt=bt, time_taken=0.0
+            )
             result.parameter = best_param
             if best_result is None or result > best_result:
                 best_result = result
-        time_taken = (datetime.now() - start_time).total_seconds()
-        best_result.time_taken = time_taken
+        if best_result is not None:
+            time_taken = (datetime.now() - start_time).total_seconds()
+            best_result.time_taken = time_taken
         return best_result

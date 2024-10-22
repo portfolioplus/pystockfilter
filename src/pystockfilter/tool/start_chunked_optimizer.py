@@ -41,6 +41,8 @@ class StartChunkedOptimizer(StartBase):
         cash: float,
         parameter: dict,
     ) -> BacktestResult:
+        if df.empty:
+            return None
         bt = ChunkedOptimizer(
             strategy,
             symbol,
@@ -61,6 +63,10 @@ class StartChunkedOptimizer(StartBase):
         # data chunk size must be greater than parameter of optimizer
         for param_dict in self.optimizer_parameters:
             for key, value in param_dict.items():
-                if key.startswith("para_") and not any(sub in key for sub in ["enter", "exit"]):
+                if key.startswith("para_") and not any(
+                    sub in key for sub in ["enter", "exit"]
+                ):
                     if value > self.data_chunk_size:
-                        raise ValueError(f"{key} must be lower than data chunk size ({self.data_chunk_size}).")
+                        raise ValueError(
+                            f"{key} must be lower than data chunk size ({self.data_chunk_size})."
+                        )

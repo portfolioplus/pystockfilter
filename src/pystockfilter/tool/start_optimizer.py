@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """ pystockfilter
 
@@ -18,12 +17,35 @@ from pystockfilter.tool.start_base import StartBase
 
 class StartOptimizer(StartBase):
 
-    def __init__(self, ticker_symbols: list[str], strategies: list[BaseStrategy], optimizer_parameters: list[dict], data_source: StockDataSource):
+    def __init__(
+        self,
+        ticker_symbols: list[str],
+        strategies: list[BaseStrategy],
+        optimizer_parameters: list[dict],
+        data_source: StockDataSource,
+    ):
 
         super().__init__(ticker_symbols, strategies, optimizer_parameters, data_source)
 
-    def run_implementation(self, strategy: BaseStrategy, symbol: str, df: pd.DataFrame, commission: float, cash: float, parameter: dict) -> BacktestResult:
-        bt = Backtest(df, strategy, commission=commission,cash=cash, trade_on_close=True, exclusive_orders=True)
+    def run_implementation(
+        self,
+        strategy: BaseStrategy,
+        symbol: str,
+        df: pd.DataFrame,
+        commission: float,
+        cash: float,
+        parameter: dict,
+    ) -> BacktestResult:
+        if df.empty:
+            return None
+        bt = Backtest(
+            df,
+            strategy,
+            commission=commission,
+            cash=cash,
+            trade_on_close=True,
+            exclusive_orders=True,
+        )
         start_time = datetime.now()
         result = bt.optimize(**parameter)
         time_taken = (datetime.now() - start_time).total_seconds()

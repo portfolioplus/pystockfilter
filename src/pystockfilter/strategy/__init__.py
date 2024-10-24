@@ -1,5 +1,6 @@
 from enum import Enum
 from pystockfilter.strategy.base_strategy import BaseStrategy
+from pystockfilter.strategy.doji_rsi_strategy import DojiRsiStrategy
 from pystockfilter.strategy.uo_strategy import UltimateStrategy
 from pystockfilter.strategy.uo_ema_cross_ema_strategy import UltimateEmaCrossEmaStrategy
 from pystockfilter.strategy.uo_ema_cross_close_strategy import UltimateEmaCrossCloseStrategy
@@ -28,6 +29,7 @@ class StrategyName(Enum):
     MARSI = "marsi"
     BVS = "bvs"
     UO = "uo"
+    DOJI_RSI = "doji_rsi"
 
 def strategy_from_name(strategy_name: StrategyName) -> BaseStrategy:
     strategy_map = {
@@ -44,6 +46,7 @@ def strategy_from_name(strategy_name: StrategyName) -> BaseStrategy:
         StrategyName.MACD: MACDStrategy,
         StrategyName.MARSI: MovingAverageRSIStrategy,
         StrategyName.BVS: BollingerVolumeStrategy,
+        StrategyName.DOJI_RSI: DojiRsiStrategy,
     }
     strategy = strategy_map.get(strategy_name)
     assert strategy is not None, f"Strategy {strategy_name} not found"

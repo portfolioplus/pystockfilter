@@ -24,9 +24,9 @@ parameters = [
 
 # Initialize optimizer with specified stock, strategy, parameters, and data source
 optimizer = StartOptimizer(
-    tickers=["ADS.F"],
+    ticker_symbols=["ADS.F"],
     strategies=strategies,
-    parameters=parameters,
+    optimizer_parameters=parameters,
     data_source=Data(Data.Y_FINANCE_CACHE),
 )
 

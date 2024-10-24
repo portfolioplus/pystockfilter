@@ -29,7 +29,7 @@ RSIS = strategy_from_name(StrategyName.RSIS)
 UO = strategy_from_name(StrategyName.UO)
 UECCS = strategy_from_name(StrategyName.UECCS)
 UECES = strategy_from_name(StrategyName.UECES)
-
+DOJI_RSI = strategy_from_name(StrategyName.DOJI_RSI)
 
 def strategy_setup(data, parameters, strategy_class):
     strategy = strategy_class(None, data, parameters)
@@ -83,6 +83,10 @@ def strategy_setup(data, parameters, strategy_class):
                 "para_ema_long": 17,
             },
         ),
+        (
+            DOJI_RSI,
+            {"para_rsi_period": 14, "para_confirmation_threshold": 3},
+        )
         # Add other strategies and parameters here
     ],
 )
@@ -251,6 +255,11 @@ def test_algo_function(name, algo_func, parameters, data, expected_ema):
             {"para_ma_short": 7, "para_ma_long": 21, "para_rsi_window": 14, "para_rsi_threshold": 50},
             "AAPL",
             6.40,
+        ),(
+            strategy_from_name(StrategyName.DOJI_RSI),
+            {"para_rsi_period": 14, "para_confirmation_threshold": 3},
+            "AAPL",
+            8.9
         )
         # Add more combinations of strategies and expected results here
     ],

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pystockfilter"
-version = "2.2.1"
+version = "2.3.0"
 description = "Intelligent Stock Screening for Informed Investment Decisions"
 authors = ["SlashGordon <slash.gordon.dev@gmail.com>"]
 license = "MIT License"

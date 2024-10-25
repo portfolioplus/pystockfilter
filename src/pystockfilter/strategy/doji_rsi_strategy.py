@@ -82,7 +82,7 @@ class DojiRsiStrategy(BaseStrategy):
     def buy_condition(self):
         # Buy when a Doji forms, there is a bullish divergence with RSI, and the next candle confirms the reversal (i.e., bullish).
         if self.doji != 0:
-            self.last_doji_index = self
+            self.last_doji_index = len(self.close) - 1
             return False
 
         if self.last_doji_index is not None:

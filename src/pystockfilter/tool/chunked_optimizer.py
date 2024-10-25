@@ -87,10 +87,11 @@ class ChunkedOptimizer:
                 sqn, best_params = self._optimize_strategy(chunk)
                 results.append(best_params)
                 logger.debug(f"Chunked optimization: {best_params} - {sqn}")
-            except ValueError as e:
+            except Exception as e: 
                 logger.warning(
                     f"Error in chunked optimization. Data chunk skipped. Error: {e}"
                 )
+            
 
         # The rest of the method remains the same
         best_result = None

@@ -1136,13 +1136,13 @@ dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments
 
 [[package]]
 name = "pytest-benchmark"
-version = "4.0.0"
+version = "5.0.1"
 description = "A ``pytest`` fixture for benchmarking code. It will group the tests into rounds that are calibrated to the chosen timer."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.9"
 files = [
-    {file = "pytest-benchmark-4.0.0.tar.gz", hash = "sha256:fb0785b83efe599a6a956361c0691ae1dbb5318018561af10f3e915caa0048d1"},
-    {file = "pytest_benchmark-4.0.0-py3-none-any.whl", hash = "sha256:fdb7db64e31c8b277dff9850d2a2556d8b60bcb0ea6524e36e28ffd7c87f71d6"},
+    {file = "pytest-benchmark-5.0.1.tar.gz", hash = "sha256:8138178618c85586ce056c70cc5e92f4283c2e6198e8422c2c825aeb3ace6afd"},
+    {file = "pytest_benchmark-5.0.1-py3-none-any.whl", hash = "sha256:d75fec4cbf0d4fd91e020f425ce2d845e9c127c21bae35e77c84db8ed84bfaa6"},
 ]
 
 [package.dependencies]
@@ -1152,7 +1152,7 @@ pytest = ">=3.8"
 [package.extras]
 aspect = ["aspectlib"]
 elasticsearch = ["elasticsearch"]
-histogram = ["pygal", "pygaljs"]
+histogram = ["pygal", "pygaljs", "setuptools"]
 
 [[package]]
 name = "pytest-cov"
@@ -1635,4 +1635,4 @@ repair = ["scipy (>=1.6.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b22a53eb320d96c655a1f8fac08c7d49d15a011777a6bb14c4ad8042f4b28069"
+content-hash = "e42c17ec7b0bd028c319d372bdf415661d32aaaba323dd6ea02106890336c183"

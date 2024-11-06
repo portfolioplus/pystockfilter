@@ -28,7 +28,7 @@ autopep8 = "^2.0.4"
 freezegun = "^1.2.2"
 black = ">=23.11,<25.0"
 pytest-mock = "^3.14.0"
-pytest-benchmark = "^4.0.0"
+pytest-benchmark = ">=4,<6"
 
 [build-system]
 requires = ["poetry-core"]

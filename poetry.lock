@@ -81,13 +81,13 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "bokeh"
-version = "3.6.0"
+version = "3.6.2"
 description = "Interactive plots and applications in the browser from Python"
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "bokeh-3.6.0-py3-none-any.whl", hash = "sha256:699e0df76cdfe54b5f574738647bd0ce230fa44fa0fcda5923e1f0f550f83d74"},
-    {file = "bokeh-3.6.0.tar.gz", hash = "sha256:0032dc1e76ad097b07626e51584685ff48c65481fbaaad105663b1046165867a"},
+    {file = "bokeh-3.6.2-py3-none-any.whl", hash = "sha256:fddc4b91f8b40178c0e3e83dfcc33886d7803a3a1f041a840834255e435a18c2"},
+    {file = "bokeh-3.6.2.tar.gz", hash = "sha256:2f3043d9ecb3d5dc2e8c0ebf8ad55727617188d4e534f3e7208b36357e352396"},
 ]
 
 [package.dependencies]

@@ -17,7 +17,7 @@ scikit-optimize = "^0.10.2"
 numpy = ">=1.17,<3.0"
 pandas = "^2.1.0"
 bokeh = ">=2,<4"
-setuptools = "^75.2.0"
+setuptools = ">=75.2,<80.0"
 
 [tool.poetry.group.dev.dependencies]
 wheel = ">=0.41.3,<0.46.0"
